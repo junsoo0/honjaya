@@ -120,6 +120,22 @@ public class CleaningReservation {
         this.signUpTime = LocalDateTime.now();
     }
 
+    public int sumPrice() {
+        Iterator<Mealkit> it = mealkit.iterator();
+        int sum = this.price; // 청소 가격
+
+        // + 추가 옵션 가격
+        sum += additionalOption.getAdditionalPrice();
+
+        // + 모든 밀키트 가격
+        while (it.hasNext()) {
+            Mealkit temp = it.next();
+            sum += temp.getMealkitPrice();
+        }
+
+        return sum;
+    }
+
     public String getReserveType() {
         return reserveType;
     }
