@@ -72,7 +72,7 @@ public class Mealkit {
         setMealkitMenu(menuName);  //메뉴 이름
         System.out.print("개수를 입력하시오 : ");
         menuNumber = sc.nextInt();  //메뉴 개수
-        this.setMealkitNum(menuNumber); //메뉴 개수 저장
-        this.setMealkitPrice(Integer.parseInt(menu.get(menuName))); //메뉴 가격 저장
+        setMealkitNum(menuNumber); //메뉴 개수 저장
+        setMealkitPrice(Integer.parseInt(menu.get(menuName))); //메뉴 가격 저장
     }
 }
