@@ -44,7 +44,7 @@ public class Mealkit {
     }
 
     //밀키트 예약요청 함수
-    public void requestMealkit(String reserveType) {
+    public void requestMealkit() {
         HashMap<String, String> menu = new HashMap<String, String>();
         Scanner sc = new Scanner(System.in);
 
