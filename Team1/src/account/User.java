@@ -7,6 +7,7 @@ public class User extends Account {
 
     public User(String name, String phoneNum, String eMail, String password, String address, int[] creditInfo, boolean isBanned) {
         super(name, phoneNum, eMail, password);
+        //ㄴㅏ는 다훈이
         this.address = address;
         this.creditInfo = creditInfo;
         this.isBanned = isBanned;
