@@ -48,11 +48,11 @@ public class MealkitRefundRequest {
     }
 
     //밀키트 함수 함수
-    public void mealkitRefund(){
+    public void mealkitRefund(int mealkitNum, int mealkitPrice){
         if (getIsRefundApproved() == true)
         {
             System.out.println("환불성공..환불된 정보를 출력합니다.");
-
+            System.out.println("환불된 밀키트 갯수 : "+mealkitNum+" 환불된 금액 : "+mealkitPrice);
         }
         else {
             System.out.println("관리자가 환불요청을 거부했습니다.");
