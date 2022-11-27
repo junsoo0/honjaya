@@ -1,11 +1,11 @@
-package Account;
+package account;
 
-public class account {
+public class Account {
     private String name;
     private String phoneNum;
     private String eMail;
     private String password;
-    public account(String name, String phoneNum, String eMail, String password){
+    public Account(String name, String phoneNum, String eMail, String password){
         this.name = name;
         this.phoneNum = phoneNum;
         this.eMail = eMail;

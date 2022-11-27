@@ -1,11 +1,11 @@
-package Account;
+package account;
 
-public class user extends account {
+public class User extends Account {
     private String address;
     private int[] creditInfo;
     private boolean isBanned;
 
-    public user(String name, String phoneNum, String eMail, String password, String address, int[] creditInfo, boolean isBanned) {
+    public User(String name, String phoneNum, String eMail, String password, String address, int[] creditInfo, boolean isBanned) {
         super(name, phoneNum, eMail, password);
         this.address = address;
         this.creditInfo = creditInfo;
