@@ -89,9 +89,9 @@ public class CleaningReservation {
             System.out.println("밀키트를 주문하시겠습니까(Y/N)?");
             String answer = in.next();
             if(answer.equals("Y")) {
-                MealKit tempMealkit = new Mealkit();
+                Mealkit tempMealkit = new Mealkit();
                 tempMealkit.requestMealkit();
-                this.mealkit.add(tempMealKit);
+                this.mealkit.add(tempMealkit);
             }
             else {
                 break;
