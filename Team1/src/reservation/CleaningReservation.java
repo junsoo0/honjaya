@@ -38,47 +38,59 @@ public class CleaningReservation {
         this.processStatus      = processStatus;
     }
 
-    public String getreserveType() {
+    public String getReserveType() {
         return reserveType;
     }
-    public LocalDateTime getsignUpTime() {
+
+    public void setReserveType(String reserveType) {
+        this.reserveType = reserveType;
+    }
+
+    public LocalDateTime getSignUpTime() {
         return signUpTime;
     }
-    public int getcleaningSpace() {
+
+    public void setSignUpTime(LocalDateTime signUpTime) {
+        this.signUpTime = signUpTime;
+    }
+
+    public int getCleaningSpace() {
         return cleaningSpace;
     }
-    public int getprice() {
+
+    public void setCleaningSpace(int cleaningSpace) {
+        this.cleaningSpace = cleaningSpace;
+    }
+
+    public int getPrice() {
         return price;
     }
-    public LocalDateTime getreservationDate() {
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public LocalDateTime getReservationDate() {
         return reservationDate;
     }
-    public String getlocation() {
+
+    public void setReservationDate(LocalDateTime reservationDate) {
+        this.reservationDate = reservationDate;
+    }
+
+    public String getLocation() {
         return location;
     }
-    public String getprocessStatus() {
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getProcessStatus() {
         return processStatus;
     }
 
-    public void setreserveType(String reserveType) {
-        this.reserveType = reserveType;
-    }
-    public void setsignUpTime(LocalDateTime signUpTime) {
-        this.signUpTime = signUpTime;
-    }
-    public void setcleaningSpace(int cleaningSpace) {
-        this.cleaningSpace = cleaningSpace;
-    }
-    public void setprice(int price) {
-        this.price = price;
-    }
-    public void setreservationDate(LocalDateTime reservationDate) {
-        this.reservationDate = reservationDate;
-    }
-    public void setlocation(String location) {
-        this.location = location;
-    }
-    public void setprocessStatus(String processStatus) {
+    public void setProcessStatus(String processStatus) {
         this.processStatus = processStatus;
     }
 }
