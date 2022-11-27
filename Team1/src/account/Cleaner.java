@@ -7,7 +7,10 @@ public class Cleaner extends Account {
     }
 
 
+    /*
     public Cleaner createCleanerAccount(){
         //this method is to create Cleaner Account
     }
+    */
+
 }

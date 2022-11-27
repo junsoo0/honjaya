@@ -33,6 +33,7 @@ public class User extends Account {
     }
 
 
+    /*
     public void showAllList() {
         //this method show all reservations of user.
     }
@@ -46,5 +47,6 @@ public class User extends Account {
         // this method is used to ban User.
         setisBanned(true);
     }
+    */
 
 }

@@ -6,7 +6,9 @@ public class Admin extends Account {
         super(name, phoneNum, eMail, password);
     }
 
+    /*
     public Cleaner createCleanerAccount(){
         //this method is to create Cleaner Account.
     }
+    */
 }
