@@ -22,7 +22,9 @@ public class Account {
     public String geteMail(){
         return eMail;
     }
-    public String getpassword(){ return password; }
+    public String getpassword(){
+        return password;
+    }
     public void setname(String name) {
         this.name = name;
     }
