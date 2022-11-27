@@ -35,9 +35,12 @@ public class Mealkit {
     }
 
     //밀키트 예약요청 함수
-    public static void requestMealkit(){
-        CleaningReservation cr = new CleaningReservation();
-        String reserveType = cr.getreserveType();
+    public static void requestMealkit(String reserveType){
+        if(reserveType=="장기"){
+
+        }else{ // 1회
+            this.setMealkitWeeks(1);
+        }
         System.out.println("")
     }
 }
