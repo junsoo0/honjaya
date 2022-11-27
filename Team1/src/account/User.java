@@ -12,18 +12,41 @@ public class User extends Account {
         this.isBanned = isBanned;
     }
 
+    //getter, setter
+    public String getaddress(){
+        return address;
+    }
+    public int[] getcreditInfo(){
+        return creditInfo;
+    }
+    public boolean getisBanned(){
+        return isBanned;
+    }
+    public void setaddress(String address) {
+        this.address = address;
+    }
+    public void setcreditInfo(int[] creditInfo){
+        this.creditInfo = creditInfo;
+    }
+    public void setisBanned(boolean isBanned){
+        this.isBanned = isBanned;
+    }
+
+
+    /*
     public void showAllList() {
-        System.out.println("이름 : "+getname());
-        System.out.println("휴대전화 : "+getphoneNum());
-        System.out.println("이메일 : "+geteMail());
-        //나머지 정보 어디까지 보여줄지 설정.
+        //this method show all reservations of user.
     }
 
     public void editInfo() {
         // this method is used to edit User's Information.
     }
 
+
     public void banUserAccount() {
         // this method is used to ban User.
+        setisBanned(true);
     }
+    */
+
 }
