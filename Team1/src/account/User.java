@@ -5,6 +5,9 @@ public class User extends Account {
     private int[] creditInfo;
     private boolean isBanned;
 
+    public User() {
+        super();
+    }
     public User(String name, String phoneNum, String eMail, String password, String address, int[] creditInfo, boolean isBanned) {
         super(name, phoneNum, eMail, password);
         this.address = address;
