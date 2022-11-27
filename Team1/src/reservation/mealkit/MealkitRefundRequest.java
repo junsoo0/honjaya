@@ -1,4 +1,5 @@
 package reservation.mealkit;
+import reservation.CleaningReservation;
 import java.time.LocalDateTime;
 
 public class MealkitRefundRequest {
@@ -26,10 +27,12 @@ public class MealkitRefundRequest {
         return isRefundApproved;
     }
 
+    //밀키트 승인 여부 판단함수
     public void approveMealkitRefund(){
 
     }
 
+    //밀키트 함수 함수
     public void mealkitRefund(){
 
     }

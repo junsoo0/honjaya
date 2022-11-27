@@ -1,5 +1,7 @@
 package reservation.mealkit;
 
+import reservation.CleaningReservation;
+
 public class Mealkit {
     private int mealkitNum;     //밀키트 개수
     private String mealkitMenu; //밀키트 메뉴
@@ -32,8 +34,10 @@ public class Mealkit {
         return mealkitWeeks;
     }
 
-
+    //밀키트 예약요청 함수
     public static void requestMealkit(){
-
+        CleaningReservation cr = new CleaningReservation();
+        String reserveType = cr.getreserveType();
+        System.out.println("")
     }
 }
