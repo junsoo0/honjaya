@@ -89,9 +89,9 @@ public class CleaningReservation {
             System.out.println("밀키트를 주문하시겠습니까(Y/N)?");
             String answer = in.next();
             if(answer.equals("Y")) {
-                MealKit tempMealkit = new Mealkit();
+                Mealkit tempMealkit = new Mealkit();
                 tempMealkit.requestMealkit();
-                this.mealkit.add(tempMealKit);
+                this.mealkit.add(tempMealkit);
             }
             else {
                 break;
@@ -118,6 +118,22 @@ public class CleaningReservation {
 
         //예약 시간
         this.signUpTime = LocalDateTime.now();
+    }
+
+    public int sumPrice() {
+        Iterator<Mealkit> it = mealkit.iterator();
+        int sum = this.price; // 청소 가격
+
+        // + 추가 옵션 가격
+        sum += additionalOption.getAdditionalPrice();
+
+        // + 모든 밀키트 가격
+        while (it.hasNext()) {
+            Mealkit temp = it.next();
+            sum += temp.getMealkitPrice();
+        }
+
+        return sum;
     }
 
     public String getReserveType() {
