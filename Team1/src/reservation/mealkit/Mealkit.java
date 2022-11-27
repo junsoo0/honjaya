@@ -35,12 +35,12 @@ public class Mealkit {
     }
 
     //밀키트 예약요청 함수
-    public static void requestMealkit(String reserveType){
+    public void requestMealkit(String reserveType){
         if(reserveType=="장기"){
-
+            this.setMealkitWeeks(Integer.parseInt(reserveType));
         }else{ // 1회
             this.setMealkitWeeks(1);
         }
-        System.out.println("")
+        System.out.println("");
     }
 }
