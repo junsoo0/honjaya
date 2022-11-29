@@ -2,16 +2,11 @@ import account.*;
 import reservation.*;
 import review.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         int[] tempCreditInfo = {1,2,3};
         User user = new User("usr1", "01034235643", "kynpook@knu.ac.kr", "1234!!", "경북대 북문", tempCreditInfo,false);
         CleaningReservation cr = new CleaningReservation();
@@ -25,9 +20,18 @@ public class Main {
 
 
         while(true) {
-            System.out.println(user.getname()+"님 예약 하시겠습니까?(Y/N)");
-            String answer = in.next();
-            if (answer.equals("Y")){
+            System.out.println(user.getname() + "님 반갑습니다.");
+            System.out.println("메뉴를 선택해주세요(숫자)");
+            System.out.println("");
+            System.out.println("1. 청소 요청 정보 불러오기");
+            System.out.println("2. 청소 요청");
+            System.out.println("3. 청소 재요청");
+            System.out.println("4. 종료");
+            int input = in.nextInt();
+
+            if(input == 1) {
+                System.out.println("구현 필요");
+            } else if(input == 2) {
                 String path = System.getProperty("user.dir") + File.separator + user.getname();
                 System.out.println("파일 절대 경로 : "+path);
                 File file = new File(path);
@@ -48,11 +52,14 @@ public class Main {
                 writer.write(txt);
                 writer.flush();
                 writer.close();
-            } else if (answer.equals("N")){
+                cr.requestPayment();
+            } else if(input == 3) {
+                System.out.println("구현 필요");
+            } else if (input == 4){
                 System.out.println("감사합니다. 안녕히 가세요.");
-                return;
+                break;
             } else {
-                System.out.println("'Y' 또는 'N'을 입력해주세요.");
+                System.out.println("숫자 1 ~ 4를 입력해주세요.");
             }
         }
 
