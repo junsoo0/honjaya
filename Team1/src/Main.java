@@ -15,8 +15,9 @@ public class Main {
         System.out.println("--------------------------------------------------");
 
         Scanner in = new Scanner(System.in);
-        System.out.println(user.getname()+"님 예약 하시겠습니까?(Y/N)");
+
         while(true) {
+            System.out.println(user.getname()+"님 예약 하시겠습니까?(Y/N)");
             String answer = in.next();
             if (answer.equals("Y")){
                 cr.requestClean();

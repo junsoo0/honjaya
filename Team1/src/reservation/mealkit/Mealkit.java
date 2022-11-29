@@ -52,12 +52,12 @@ public class Mealkit {
         int menuNumber = 0;
         int cnt = 1;
 
-        menu.put("미역국", "10,000");
-        menu.put("육개장", "10,000");
-        menu.put("부대찌개", "13,000");
-        menu.put("짜장면", "10,000");
-        menu.put("떡볶이", "10,000");
-        menu.put("야채볶음밥", "10,000");
+        menu.put("미역국", "10000");
+        menu.put("육개장", "10000");
+        menu.put("부대찌개", "13000");
+        menu.put("짜장면", "10000");
+        menu.put("떡볶이", "10000");
+        menu.put("야채볶음밥", "10000");
 
         System.out.println("=============MealKit Request=============");
         System.out.println("주차 선택 : ");
@@ -70,6 +70,7 @@ public class Mealkit {
         System.out.print("원하는 메뉴의 이름을 입력하시오 : ");
         menuName = sc.next();
         setMealkitMenu(menuName);  //메뉴 이름
+
         System.out.print("개수를 입력하시오 : ");
         menuNumber = sc.nextInt();  //메뉴 개수
         setMealkitNum(menuNumber); //메뉴 개수 저장

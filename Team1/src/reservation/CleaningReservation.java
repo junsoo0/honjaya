@@ -24,7 +24,7 @@ public class CleaningReservation {
 
     private User                    user;
     private Cleaner                 cleaner;
-    private Vector<Mealkit>         mealkit; // 여러개여서 수정!!!>
+    private Vector<Mealkit>         mealkit = new Vector<Mealkit>(); // 여러개여서 수정!!!>
     private FinishCleaningInfo      finishCleaningInfo;
     private AdditionalOption        additionalOption;
     private ReCleaningReservation   reCleaningReservation;
@@ -97,10 +97,11 @@ public class CleaningReservation {
                 this.mealkit.add(tempMealkit);
             }
             else {
+                System.out.println("종료했습니다.");
                 break;
             }
         }
-
+        System.out.println("while문 나왔습니다.");
         //진행 상황
         this.processStatus      = "예약 대기";
         
