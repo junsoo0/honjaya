@@ -147,6 +147,7 @@ public class CleaningReservation {
 
     public Boolean requestPayment() {
         System.out.println("결제 성공 했습니다.");
+
         this.processStatus = "결제 성공";
         return true;
     }
