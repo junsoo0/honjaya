@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Vector;
 import java.time.LocalDateTime;
+import java.io.File;
 
 import account.User;
 import reservation.mealkit.Mealkit;
@@ -32,7 +33,7 @@ public class CleaningReservation {
 
     public void requestClean() {
         Scanner in = new Scanner(System.in);
-        
+
         // 예약 유형 선택(예외 구현 완료)
         while(true) {
             System.out.println("예약 유형을 선택해 주세요(1회, 정기). ");

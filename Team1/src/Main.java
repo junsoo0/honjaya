@@ -2,6 +2,7 @@ import account.*;
 import reservation.*;
 import review.*;
 
+import java.io.*;
 import java.util.Scanner;
 
 public class Main {
@@ -9,7 +10,11 @@ public class Main {
         int[] tempCreditInfo = {1,2,3};
         User user = new User("usr1", "01034235643", "kynpook@knu.ac.kr", "1234!!", "경북대 북문", tempCreditInfo,false);
         CleaningReservation cr = new CleaningReservation();
-        cr.setUser(user);
+
+        String path = System.getProperty("user.dir") + File.separator + user.getname();
+        System.out.println("파일 절대 경로 : "+path);
+        File file = new File(path);
+        file.mkdir(); //user name으로 된 directory 생성, (user's dm layer..)
 
         System.out.println("--------------------------------------------------");
         System.out.println("                      혼자야?");
@@ -24,7 +29,8 @@ public class Main {
             String answer = in.next();
             if (answer.equals("Y")){
                 cr.requestClean();
-                cr.requestPayment();
+                File file2 = new File(file,user.getname()+".txt");
+                BufferedWriter writer = new BufferedWriter(new FileWriter(file2));
             } else if (answer.equals("N")){
                 System.out.println("감사합니다. 안녕히 가세요.");
                 return;
