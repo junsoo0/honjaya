@@ -3,6 +3,7 @@ import reservation.*;
 import review.*;
 
 import java.io.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
@@ -29,7 +30,7 @@ public class Main {
             String answer = in.next();
             if (answer.equals("Y")){
                 cr.requestClean();
-                File file2 = new File(path,cr.getReservationDate().toString()+".txt");
+                File file2 = new File(path + "/" + cr.getReservationDate().format(DateTimeFormatter.ofPattern("yyyyMMdd"))+".txt");
                 try{
                     if(file2.createNewFile()){
                         System.out.println("File created");
