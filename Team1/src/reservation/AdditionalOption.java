@@ -24,7 +24,7 @@ public class AdditionalOption {
                 setLaundry(false);
                 break;
             } else {
-                System.out.print("'Y' 또는 'N'을 입력해주세요.");
+                System.out.println("'Y' 또는 'N'을 입력해주세요.");
             }
         }
 
@@ -38,7 +38,7 @@ public class AdditionalOption {
                 setDishWash(false);
                 break;
             } else {
-                System.out.print("'Y' 또는 'N'을 입력해주세요.");
+                System.out.println("'Y' 또는 'N'을 입력해주세요.");
             }
         }
 

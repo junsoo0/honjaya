@@ -85,8 +85,8 @@ public class CleaningReservation {
 
 
         //추가 옵션 선택 과정
-        AdditionalOption additionalOption = new AdditionalOption();
-        additionalOption.requestAdditionalOption();
+        this.additionalOption = new AdditionalOption();
+        this.additionalOption.requestAdditionalOption();
 
         // 밀키트 주문 과정
         while(true){
@@ -146,6 +146,13 @@ public class CleaningReservation {
     }
 
     public Boolean requestPayment() {
+        int[] creditInfo = user.getcreditInfo();
+        int allPrice = this.sumPrice();
+
+        System.out.println("총 금액 : " + allPrice);
+
+        // CardPaymentSystem.makePayment(creditInfo, allPrice);
+
         System.out.println("결제 성공 했습니다.");
         this.processStatus = "결제 성공";
         return true;
@@ -218,5 +225,9 @@ public class CleaningReservation {
 
     public void setProcessStatus(String processStatus) {
         this.processStatus = processStatus;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
