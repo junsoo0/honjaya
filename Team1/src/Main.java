@@ -39,6 +39,8 @@ public class Main {
                 {
                     System.out.println("DB 생성 오류!!!!!"+user.getname()+"폴더가 이미 존재합니다");
                 }
+
+
                 cr.requestClean();
                 File file2 = new File(file,user.getname()+".txt");
                 BufferedWriter writer = new BufferedWriter(new FileWriter(file2,false));
