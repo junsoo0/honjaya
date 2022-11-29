@@ -24,6 +24,7 @@ public class Main {
             String answer = in.next();
             if (answer.equals("Y")){
                 cr.requestClean();
+                cr.requestPayment();
             } else if (answer.equals("N")){
                 System.out.println("감사합니다. 안녕히 가세요.");
                 return;
