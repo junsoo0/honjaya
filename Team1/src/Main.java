@@ -7,6 +7,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         User user = new User();
+        CleaningReservation cr = new CleaningReservation();
+
         System.out.println("--------------------------------------------------");
         System.out.println("                      혼자야?");
         System.out.println("       (1인 가구 청소 대행 및 밀키트 배달 서비스)");
@@ -17,7 +19,7 @@ public class Main {
         while(true) {
             String answer = in.next();
             if (answer.equals("Y")){
-                CleaningReservation user.
+                cr.requestClean();
             } else if (answer.equals("N")){
                 System.out.println("감사합니다. 안녕히 가세요.");
                 return;

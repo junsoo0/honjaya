@@ -44,7 +44,8 @@ public class CleaningReservation {
 
         // 청소 면적 선택(예외 구현 안함)
         System.out.println("청소 면적을 선택해 주세요.");
-        this.cleaningSpace      = in.nextInt();
+        this.cleaningSpace = in.nextInt();
+        in.nextLine();
 
         // 예약 기간 선택(예외 구현 안함)
         System.out.println("예약 기간을 선택해 주세요(yyyy-MM-dd HH:mm).");
@@ -76,6 +77,7 @@ public class CleaningReservation {
             }
             break;
         }
+        in.nextLine();
 
         System.out.println("예약 주소을 선택해 주세요.");
         this.location.concat(in.nextLine());
