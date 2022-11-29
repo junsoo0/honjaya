@@ -1,6 +1,7 @@
 package reservation;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Vector;
 import java.time.LocalDateTime;
@@ -13,13 +14,13 @@ import java.lang.ref.Cleaner;
 
 
 public class CleaningReservation {
-    private String          reserveType;    // 정기 or 1회
+    private String          reserveType = "없음";    // 정기 or 1회 or 없음
     private LocalDateTime   signUpTime;     // 청소 요청 시간
-    private int             cleaningSpace;  // 청소 면적
+    private int             cleaningSpace = 0;  // 청소 면적
     private int             price = 0;          // 청소 가격만
     private LocalDateTime   reservationDate;// 청소 예정 시간
-    private String          location;       // 청소 장소
-    private String          processStatus;  // 진행 상태
+    private String          location = "없음";       // 청소 장소
+    private String          processStatus = "예약 전";  // 진행 상태
 
     private User                    user;
     private Cleaner                 cleaner;
@@ -99,7 +100,7 @@ public class CleaningReservation {
         }
 
         //진행 상황
-        this.processStatus      = "예약중";
+        this.processStatus      = "예약 대기";
         
         //가격 측정(예외 구현 안함)
         if(cleaningSpace <= 9){
@@ -134,6 +135,29 @@ public class CleaningReservation {
         }
 
         return sum;
+    }
+
+    public void arrangeCleaner(Cleaner cleaner) {
+        System.out.println("청소 대행자 배치 완료 했습니다.");
+        this.processStatus = "청소 대리인 배치 완료";
+    }
+
+    public Boolean requestPayment() {
+        System.out.println("결제 성공 했습니다.");
+        this.processStatus = "결제 성공";
+        return true;
+    }
+
+    public void cancelReservation() {
+        System.out.println("예약 취소 했습니다");
+        this.processStatus = "예약 취소";
+
+        //값 초기화
+
+    }
+
+    public void completeReservation() {
+
     }
 
     public String getReserveType() {
