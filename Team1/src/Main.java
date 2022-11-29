@@ -6,7 +6,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        User user = new User();
+        int[] tempCreditInfo = {1,2,3};
+        User user = new User("kim", "01034235643", "kynpook@knu.ac.kr", "1234!!", "경북대 북문", tempCreditInfo,false);
         CleaningReservation cr = new CleaningReservation();
 
         System.out.println("--------------------------------------------------");
@@ -15,6 +16,7 @@ public class Main {
         System.out.println("--------------------------------------------------");
 
         Scanner in = new Scanner(System.in);
+
 
         while(true) {
             System.out.println(user.getname()+"님 예약 하시겠습니까?(Y/N)");

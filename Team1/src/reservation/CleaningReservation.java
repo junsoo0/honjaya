@@ -159,8 +159,9 @@ public class CleaningReservation {
 
     }
 
-    public void completeReservation() {
-
+    public void completeCleaning() {
+        System.out.println("청소 완료 했습니다");
+        this.processStatus = "청소 완료";
     }
 
     public String getReserveType() {
