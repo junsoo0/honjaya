@@ -97,11 +97,10 @@ public class CleaningReservation {
                 this.mealkit.add(tempMealkit);
             }
             else {
-                System.out.println("종료했습니다.");
+                System.out.println("밀키트 주문을 종료합니다.");
                 break;
             }
         }
-        System.out.println("while문 나왔습니다.");
         //진행 상황
         this.processStatus      = "예약 대기";
         
