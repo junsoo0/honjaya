@@ -219,4 +219,8 @@ public class CleaningReservation {
     public void setProcessStatus(String processStatus) {
         this.processStatus = processStatus;
     }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
