@@ -22,7 +22,7 @@ public class CleaningReservation {
     private String          location = "없음";       // 청소 장소
     private String          processStatus = "예약 전";  // 진행 상태
 
-    private User                    user;
+    private User                    user ;
     private Cleaner                 cleaner;
     private Vector<Mealkit>         mealkit = new Vector<Mealkit>(); // 여러개여서 수정!!!>
     private FinishCleaningInfo      finishCleaningInfo;
