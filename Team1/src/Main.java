@@ -29,8 +29,18 @@ public class Main {
             String answer = in.next();
             if (answer.equals("Y")){
                 cr.requestClean();
-                File file2 = new File(file,user.getname()+".txt");
-                BufferedWriter writer = new BufferedWriter(new FileWriter(file2));
+                File file2 = new File(path,cr.getReservationDate().toString()+".txt");
+                try{
+                    if(file2.createNewFile()){
+                        System.out.println("File created");
+                    }
+                    else{
+                        System.out.println("File already Exists");
+                    }
+                }
+                catch (IOException e){
+                    e.printStackTrace();
+                }
             } else if (answer.equals("N")){
                 System.out.println("감사합니다. 안녕히 가세요.");
                 return;
