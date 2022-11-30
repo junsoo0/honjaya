@@ -35,6 +35,7 @@ public class Main {
 
             if(input == 1) {
                 System.out.println("--------------------------------------------------");
+                System.out.println(user.getname()+"의 예약 정보입니다.");
                 String[] filenames = file.list();
                 System.out.println("    예약 날짜       진행 상태 ");
                 try {
