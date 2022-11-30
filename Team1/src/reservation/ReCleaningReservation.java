@@ -1,6 +1,7 @@
 package reservation;
 
 import java.time.LocalDateTime;
+import java.util.Scanner;
 
 public class ReCleaningReservation {
     private LocalDateTime signUpTime;
@@ -11,19 +12,26 @@ public class ReCleaningReservation {
 
     private CleaningReservation cleaningReservation;
 
-    public ReCleaningReservation() {
-
-    }
-
     public void selectReRequestCleanDate() {
 
     }
 
     public void reRequestClean() {
+        Scanner sc = new Scanner(System.in);
+
+        // main에서 옮겨왔을 떄 반영!
+        // cleaningReservation = cleaningReserve;
+
         FinishCleaningInfo finishCleaningInfo = cleaningReservation.getFinishCleaningInfo();
-        finishCleaningInfo.getFinishCleanTime();
+        LocalDateTime finishCleanTime = finishCleaningInfo.getFinishCleanTime();
 
+        System.out.print("재요청 사유를 입력해주세요: ");
+        reRequestReason = sc.nextLine();
+        setReRequestReason(reRequestReason);
 
+        System.out.print("증거 사진을 촬영해주세요: ");
+
+        // file explorer UI 등장
     }
 
     public void approveReRequest() {

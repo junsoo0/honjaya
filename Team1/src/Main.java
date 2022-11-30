@@ -116,7 +116,8 @@ public class Main {
                         if ((sLine = reader.readLine()) != null) {
                             status = sLine;
                         }
-                        cleanInfo.put(finishCleanTime, status);
+                        if (status.equals("청소 완료") && finishCleanTime.plusHours(12).compareTo(LocalDateTime.now()) > 0)
+                            cleanInfo.put(finishCleanTime, status);
                     }
                 } catch (NullPointerException e) {
                     System.out.println("요청 정보가 존재하지 않습니다.");
@@ -139,19 +140,21 @@ public class Main {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                 //reCleaningInfo.setFinishCleanTime(LocalDateTime.parse(finishCleanTime, formatter));
 
-                System.out.println("--------------------------------------------------");
+                ReCleaningReservation reCleaningReserv = new ReCleaningReservation(cleaningReserv);
+                reCleaningReserv.reRequestClean();
+
+
                 System.out.println("구현 필요");
-                System.out.println("--------------------------------------------------");
+
             } else if (input == 4){
-                System.out.println("--------------------------------------------------");
                 System.out.println("감사합니다. 안녕히 가세요.");
-                System.out.println("--------------------------------------------------");
                 break;
             } else {
                 System.out.println("--------------------------------------------------");
                 System.out.println("숫자 1 ~ 4를 입력해주세요.");
                 System.out.println("--------------------------------------------------");
             }
+            System.out.println("\n");
         }
 
 

@@ -43,7 +43,7 @@ public class AdditionalOption {
         }
 
         System.out.print("추가 요구사항을 입력해주세요: ");
-        additionalRequirement = sc.next();
+        additionalRequirement = sc.nextLine();
         setAdditionalRequirement(additionalRequirement);
 
         if(getLaundry())
