@@ -37,19 +37,22 @@ public class Main {
 
             if(input == 1) {
                 System.out.println("--------------------------------------------------");
-                System.out.println(user.getname()+"의 예약 정보입니다.");
+                System.out.println("[" + user.getname() + "님의 예약 정보]");
                 String[] filenames = file.list();
-                System.out.println("    예약 날짜       진행 상태 ");
+                System.out.println("       예약 날짜       진행 상태 ");
                 try {
+                    int i = 1;
                     for (String filename : filenames) {
+
                         File rf = new File(path + "/" + filename);
                         BufferedReader reader = new BufferedReader(new FileReader(rf));
                         String sLine = null;
+                        System.out.print(i++ + ": ");
                         while( (sLine = reader.readLine()) != null ){
                             System.out.print(sLine + " | ");
                         }
 
-                        System.out.print("\n\n");
+                        System.out.print("\n");
                     }
                 }
                 catch (NullPointerException e) {
@@ -103,7 +106,7 @@ public class Main {
                 //파일 불러서 status , finishcleantime string으로 받았다면, for문으로 받았을 때
                 //while();{
                 HashMap<String, String> cleanInfo = new HashMap<String, String>();
-                cleanInfo.put(finishCleanTime, status);
+                //cleanInfo.put(finishCleanTime, status);
 
                 for(String key : cleanInfo.keySet()){
                     System.out.println("완료시간 : "+key + "청소상태 : " + cleanInfo.get(key));
@@ -121,15 +124,14 @@ public class Main {
                 System.out.println("구현 필요");
                 System.out.println("--------------------------------------------------");
             } else if (input == 4){
-                System.out.println("--------------------------------------------------");
                 System.out.println("감사합니다. 안녕히 가세요.");
-                System.out.println("--------------------------------------------------");
                 break;
             } else {
                 System.out.println("--------------------------------------------------");
                 System.out.println("숫자 1 ~ 4를 입력해주세요.");
                 System.out.println("--------------------------------------------------");
             }
+            System.out.println("\n");
         }
 
 
