@@ -68,12 +68,12 @@ public class ReCleaningReservation {
         tempDate --;
         finishCleanTime = cleanInfo.get(tempDate);
 
-        if (cleanInfo.get(finishCleanTime) == null) {
+        if (cleanInfo.get(tempDate) == null) {
             System.out.println("목록에 없는 날짜를 입력하셨습니다.");
             return;
         }
 
-        cleaningReserv.setProcessStatus(cleanInfo.get(finishCleanTime));
+        cleaningReserv.setProcessStatus("청소 완료");
         cleaningReserv.setFinishCleaningInfo(cleaningInfo);
         cleaningInfo.setFinishCleanTime(finishCleanTime);
         cleaningReservation = cleaningReserv;
