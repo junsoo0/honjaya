@@ -51,7 +51,18 @@ public class Main {
                 catch (IOException e){
                     e.printStackTrace();
                 }
+                System.out.println(cr.getProcessStatus());
                 cr.requestPayment();
+
+                try {
+
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(file2));
+
+                    writer.write(cr.getProcessStatus());
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else if(input == 3) {
                 System.out.println("구현 필요");
             } else if (input == 4){

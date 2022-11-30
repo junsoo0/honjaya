@@ -50,7 +50,7 @@ public class CleaningReservation {
 
         // 예약 기간 선택(예외 구현 안함)
         System.out.println("예약 기간을 선택해 주세요(yyyy-MM-dd HH:mm).");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String tempDate = in.nextLine();
         this.reservationDate = LocalDateTime.parse(tempDate, formatter);
 
@@ -146,7 +146,7 @@ public class CleaningReservation {
     }
 
     public Boolean requestPayment() {
-        int[] creditInfo = user.getcreditInfo();
+        //int[] creditInfo = user.getcreditInfo();
         int allPrice = this.sumPrice();
 
         System.out.println("총 금액 : " + allPrice);
@@ -167,6 +167,8 @@ public class CleaningReservation {
     }
 
     public void completeCleaning() {
+        this.finishCleaningInfo = new FinishCleaningInfo();
+        finishCleaningInfo.finishClean();
         System.out.println("청소 완료 했습니다");
         this.processStatus = "청소 완료";
     }
