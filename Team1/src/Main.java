@@ -53,12 +53,15 @@ public class Main {
                 }
                 System.out.println(cr.getProcessStatus());
                 cr.requestPayment();
+                cr.completeCleaning();
 
                 try {
 
                     BufferedWriter writer = new BufferedWriter(new FileWriter(file2));
 
                     writer.write(cr.getProcessStatus());
+                    writer.write("\r\n");
+                    writer.write(cr.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:MM")));
                     writer.close();
                 } catch (IOException e) {
                     e.printStackTrace();
