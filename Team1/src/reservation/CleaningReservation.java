@@ -242,6 +242,10 @@ public class CleaningReservation {
         this.user = user;
     }
 
+    public void setFinishCleaningInfo(FinishCleaningInfo finishCleaningInfo) {
+        this.finishCleaningInfo = finishCleaningInfo;
+    }
+
     public FinishCleaningInfo getFinishCleaningInfo() {
         return finishCleaningInfo;
     }

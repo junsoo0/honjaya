@@ -2,7 +2,9 @@ import account.*;
 import reservation.*;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -91,6 +93,29 @@ public class Main {
                 }
                 System.out.println("--------------------------------------------------");
             } else if(input == 3) {
+                String status;
+                String finishCleanTime;
+
+                CleaningReservation reCleaningReserv = new CleaningReservation();
+                FinishCleaningInfo reCleaningInfo = new FinishCleaningInfo();
+
+                //파일 불러서 status , finishcleantime string으로 받았다면, for문으로 받았을 때
+                //while();{
+                HashMap<String, String> cleanInfo = new HashMap<String, String>();
+                cleanInfo.put(finishCleanTime, status);
+
+                for(String key : cleanInfo.keySet()){
+                    System.out.println("완료시간 : "+key + "청소상태 : " + cleanInfo.get(key));
+                }
+                System.out.print("재청소 원하는 날짜 입력 : ");
+                finishCleanTime = in.nextLine();
+
+                reCleaningReserv.setProcessStatus(cleanInfo.get(finishCleanTime));
+                reCleaningReserv.setFinishCleaningInfo(reCleaningInfo);
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                reCleaningInfo.setFinishCleanTime(LocalDateTime.parse(finishCleanTime, formatter));
+
                 System.out.println("--------------------------------------------------");
                 System.out.println("구현 필요");
                 System.out.println("--------------------------------------------------");
