@@ -19,14 +19,16 @@ public class Main {
         File file = new File(path);
         file.mkdir(); //user name으로 된 directory 생성, (user's dm layer..)
 
-        System.out.println("--------------------------------------------------");
-        System.out.println("                      혼자야?");
-        System.out.println("       (1인 가구 청소 대행 및 밀키트 배달 서비스)");
-        System.out.println("--------------------------------------------------");
+
 
         Scanner in = new Scanner(System.in);
 
         while(true) {
+            System.out.println("--------------------------------------------------");
+            System.out.println("                      혼자야?");
+            System.out.println("       (1인 가구 청소 대행 및 밀키트 배달 서비스)");
+            System.out.println("--------------------------------------------------");
+
             System.out.println(user.getname() + "님 반갑습니다.");
             System.out.println("메뉴를 선택해주세요(숫자)\n");
             System.out.println("1. 청소 요청 정보 불러오기");
@@ -93,7 +95,10 @@ public class Main {
                 System.out.println("--------------------------------------------------");
             } else if(input == 3) {
                 String[] filenames = file.list();
-
+                if(file.list().length==0){
+                    System.out.println("신청한 청소 내역이 없습니다.");
+                    continue;
+                }
                 ReCleaningReservation reCleaningReserv = new ReCleaningReservation();
                 reCleaningReserv.reRequestClean(filenames, path);
             } else if (input == 4){
