@@ -43,7 +43,6 @@ public class Main {
                 try {
                     int i = 1;
                     for (String filename : filenames) {
-
                         File rf = new File(path + "/" + filename);
                         BufferedReader reader = new BufferedReader(new FileReader(rf));
                         String sLine = null;
@@ -87,7 +86,7 @@ public class Main {
 
                     writer.write(cr.getProcessStatus());
                     writer.write("\r\n");
-                    writer.write(cr.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:MM")));
+                    writer.write(cr.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
                     writer.write("\r\n");
                     writer.write(cr.getProcessStatus());
 
@@ -117,7 +116,8 @@ public class Main {
                         if ((sLine = reader.readLine()) != null) {
                             status = sLine;
                         }
-                        cleanInfo.put(finishCleanTime, status);
+                        if (status.equals("청소 완료") && finishCleanTime.plusHours(12).compareTo(LocalDateTime.now()) > 0)
+                            cleanInfo.put(finishCleanTime, status);
                     }
                 } catch (NullPointerException e) {
                     System.out.println("요청 정보가 존재하지 않습니다.");
@@ -144,9 +144,8 @@ public class Main {
                 reCleaningReserv.reRequestClean();
 
 
-                System.out.println("--------------------------------------------------");
                 System.out.println("구현 필요");
-                System.out.println("--------------------------------------------------");
+
             } else if (input == 4){
                 System.out.println("감사합니다. 안녕히 가세요.");
                 break;
