@@ -53,10 +53,6 @@ public class Main {
 
                         System.out.print("\n");
                     }
-                }
-                catch (NullPointerException e) {
-                    System.out.println("요청 정보가 존재하지 않습니다.");
-                    continue;
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -96,50 +92,10 @@ public class Main {
                 }
                 System.out.println("--------------------------------------------------");
             } else if(input == 3) {
-                String status = "";
-                LocalDateTime finishCleanTime = LocalDateTime.now();
-                HashMap<LocalDateTime, String> cleanInfo = new HashMap<LocalDateTime, String>();
-
-                CleaningReservation cleaningReserv = new CleaningReservation();
-                FinishCleaningInfo cleaningInfo = new FinishCleaningInfo();
-
                 String[] filenames = file.list();
-                //파일 불러서 status , finishcleantime string으로 받았다면, for문으로 받았을 때
-                try {
-                    for (String filename : filenames) {
-                        File rf = new File(path + "/" + filename);
-                        BufferedReader reader = new BufferedReader(new FileReader(rf));
-                        String sLine = null;
-                        if ((sLine = reader.readLine()) != null) {
-                            finishCleanTime = LocalDateTime.parse(sLine, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-                        }
-                        if ((sLine = reader.readLine()) != null) {
-                            status = sLine;
-                        }
-                        if (status.equals("청소 완료") && finishCleanTime.plusHours(12).compareTo(LocalDateTime.now()) > 0)
-                            cleanInfo.put(finishCleanTime, status);
-                    }
-                } catch (NullPointerException e) {
-                    System.out.println("요청 정보가 존재하지 않습니다.");
-                    continue;
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-
-                for(LocalDateTime key : cleanInfo.keySet()){
-                    System.out.println("완료시간 : "+ key + " 청소상태 : " + cleanInfo.get(key));
-                }
-                System.out.print("재청소 원하는 날짜 입력(yyyy-MM-dd HH:mm) : ");
-                in.nextLine(); // 버퍼 비우기
-                String tempDate = in.nextLine();
-                finishCleanTime = LocalDateTime.parse(tempDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-
-                cleaningReserv.setProcessStatus(cleanInfo.get(finishCleanTime));
-                cleaningReserv.setFinishCleaningInfo(cleaningInfo);
-                cleaningInfo.setFinishCleanTime(finishCleanTime);
 
                 ReCleaningReservation reCleaningReserv = new ReCleaningReservation();
-                reCleaningReserv.reRequestClean();
+                reCleaningReserv.reRequestClean(filenames, path);
             } else if (input == 4){
                 System.out.println("감사합니다. 안녕히 가세요.");
                 break;
