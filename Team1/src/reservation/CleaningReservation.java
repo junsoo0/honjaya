@@ -26,7 +26,7 @@ public class CleaningReservation {
     private User                    user ;
     private Cleaner                 cleaner;
     private Vector<Mealkit>         mealkit = new Vector<Mealkit>(); // 여러개여서 수정!!!>
-    private FinishCleaningInfo      finishCleaningInfo;
+    private FinishCleaningInfo      finishCleaningInfo = new FinishCleaningInfo();
     private AdditionalOption        additionalOption;
     private ReCleaningReservation   reCleaningReservation;
     private Review                  review;
@@ -150,9 +150,18 @@ public class CleaningReservation {
         int allPrice = this.sumPrice();
 
         System.out.println("총 금액 : " + allPrice);
-
-        // CardPaymentSystem.makePayment(creditInfo, allPrice);
-
+/*
+        if (CardPaymentSystem.makePayment(creditInfo, allPrice)) {
+            System.out.println("결제 성공 했습니다.");
+            this.processStatus = "결제 성공";
+            return true;
+        }
+        else {
+             System.out.println("결제 실패 했습니다.");
+             this.processStatus = "결제 성공";
+             return false;
+        }
+*/
         System.out.println("결제 성공 했습니다.");
 
         this.processStatus = "결제 성공";
@@ -168,8 +177,8 @@ public class CleaningReservation {
     }
 
     public void completeCleaning() {
-        this.finishCleaningInfo = new FinishCleaningInfo();
-        finishCleaningInfo.finishClean();
+        LocalDateTime tempFinsihCleanTime = this.reservationDate;
+        this.finishCleaningInfo.setFinishCleanTime(tempFinsihCleanTime.plusHours(2));
         System.out.println("청소 완료 했습니다");
         this.processStatus = "청소 완료";
     }
@@ -232,5 +241,13 @@ public class CleaningReservation {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void setFinishCleaningInfo(FinishCleaningInfo finishCleaningInfo) {
+        this.finishCleaningInfo = finishCleaningInfo;
+    }
+
+    public FinishCleaningInfo getFinishCleaningInfo() {
+        return finishCleaningInfo;
     }
 }

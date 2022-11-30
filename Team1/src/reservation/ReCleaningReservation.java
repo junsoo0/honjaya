@@ -9,12 +9,17 @@ public class ReCleaningReservation {
     private Boolean isReRequestApproved;
     private LocalDateTime reRequestCleanDate;
 
+    private CleaningReservation cleaningReservation;
+
+    public ReCleaningReservation() {
+    }
+
     public void selectReRequestCleanDate() {
 
     }
 
     public void reRequestClean() {
-
+        FinishCleaningInfo finishCleaningInfo;
     }
 
     public void approveReRequest() {
