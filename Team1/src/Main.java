@@ -34,14 +34,19 @@ public class Main {
             int input = in.nextInt();
 
             if(input == 1) {
+                System.out.println("--------------------------------------------------");
                 String[] filenames = file.list();
+                System.out.println("    예약 날짜       진행 상태 ");
                 try {
                     for (String filename : filenames) {
                         File rf = new File(path + "/" + filename);
                         BufferedReader reader = new BufferedReader(new FileReader(rf));
                         String sLine = null;
-                        while( (sLine = reader.readLine()) != null )
+                        while( (sLine = reader.readLine()) != null ){
                             System.out.print(sLine + " ");
+                            System.out.print("|");
+                        }
+
                         System.out.print("\n\n");
                     }
                 }
@@ -51,7 +56,9 @@ public class Main {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+                System.out.println("--------------------------------------------------");
             } else if(input == 2) {
+                System.out.println("--------------------------------------------------");
                 cr.requestClean();
                 File file2 = new File(path + "/" + cr.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+".txt");
                 try{
@@ -73,20 +80,28 @@ public class Main {
 
                     BufferedWriter writer = new BufferedWriter(new FileWriter(file2));
 
-                    writer.write(cr.getProcessStatus());
-                    writer.write("\r\n");
                     writer.write(cr.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:MM")));
+                    writer.write("\r\n");
+                    writer.write(cr.getProcessStatus());
+
                     writer.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                System.out.println("--------------------------------------------------");
             } else if(input == 3) {
+                System.out.println("--------------------------------------------------");
                 System.out.println("구현 필요");
+                System.out.println("--------------------------------------------------");
             } else if (input == 4){
+                System.out.println("--------------------------------------------------");
                 System.out.println("감사합니다. 안녕히 가세요.");
+                System.out.println("--------------------------------------------------");
                 break;
             } else {
+                System.out.println("--------------------------------------------------");
                 System.out.println("숫자 1 ~ 4를 입력해주세요.");
+                System.out.println("--------------------------------------------------");
             }
         }
 
