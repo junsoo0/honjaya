@@ -53,7 +53,7 @@ public class ReCleaningReservation {
 
 
         if (cleanInfo.size() == 0) {
-            System.out.println("재요청을 할 수 있는 게 없습니다.");
+            System.out.println("재요청을 할 수 있는 청소 내역이 없습니다.");
             return;
         }
 
@@ -62,10 +62,15 @@ public class ReCleaningReservation {
         }
         System.out.print("재청소 원하는 청소 번호 입력 : ");
         int tempDate = sc.nextInt();
+        sc.nextLine();
 
-        if (tempDate < 0 || tempDate >= cleanInfo.size()) {
-            System.out.println("목록에 없는 날짜를 입력하셨습니다.");
-            return;
+        while (true) {
+            if (tempDate < 0 || tempDate >= cleanInfo.size()) {
+                System.out.println("목록에 없는 번호를 입력하셨습니다. 다시 입력해주세요: ");
+                tempDate = sc.nextInt();
+            }
+            else
+                break;
         }
         finishCleanTime = cleanInfo.get(tempDate);
 
