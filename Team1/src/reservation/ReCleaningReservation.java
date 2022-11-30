@@ -12,6 +12,7 @@ public class ReCleaningReservation {
     private CleaningReservation cleaningReservation;
 
     public ReCleaningReservation() {
+
     }
 
     public void selectReRequestCleanDate() {
@@ -19,7 +20,10 @@ public class ReCleaningReservation {
     }
 
     public void reRequestClean() {
-        FinishCleaningInfo finishCleaningInfo;
+        FinishCleaningInfo finishCleaningInfo = cleaningReservation.getFinishCleaningInfo();
+        finishCleaningInfo.getFinishCleanTime();
+
+
     }
 
     public void approveReRequest() {
