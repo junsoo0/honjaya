@@ -34,7 +34,23 @@ public class Main {
             int input = in.nextInt();
 
             if(input == 1) {
-                System.out.println("구현 필요");
+                String[] filenames = file.list();
+                try {
+                    for (String filename : filenames) {
+                        File rf = new File(path + "/" + filename);
+                        BufferedReader reader = new BufferedReader(new FileReader(rf));
+                        String sLine = null;
+                        while( (sLine = reader.readLine()) != null )
+                            System.out.print(sLine + " ");
+                        System.out.print("\n\n");
+                    }
+                }
+                catch (NullPointerException e) {
+                    System.out.println("요청 정보가 존재하지 않습니다.");
+                    continue;
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             } else if(input == 2) {
                 cr.requestClean();
                 File file2 = new File(path + "/" + cr.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+".txt");
