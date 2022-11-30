@@ -44,8 +44,7 @@ public class Main {
                         BufferedReader reader = new BufferedReader(new FileReader(rf));
                         String sLine = null;
                         while( (sLine = reader.readLine()) != null ){
-                            System.out.print(sLine + " ");
-                            System.out.print("|");
+                            System.out.print(sLine + " | ");
                         }
 
                         System.out.print("\n\n");
@@ -81,6 +80,8 @@ public class Main {
 
                     BufferedWriter writer = new BufferedWriter(new FileWriter(file2));
 
+                    writer.write(cr.getProcessStatus());
+                    writer.write("\r\n");
                     writer.write(cr.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:MM")));
                     writer.write("\r\n");
                     writer.write(cr.getProcessStatus());

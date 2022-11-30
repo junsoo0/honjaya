@@ -150,9 +150,18 @@ public class CleaningReservation {
         int allPrice = this.sumPrice();
 
         System.out.println("총 금액 : " + allPrice);
-
-        // CardPaymentSystem.makePayment(creditInfo, allPrice);
-
+/*
+        if (CardPaymentSystem.makePayment(creditInfo, allPrice)) {
+            System.out.println("결제 성공 했습니다.");
+            this.processStatus = "결제 성공";
+            return true;
+        }
+        else {
+             System.out.println("결제 실패 했습니다.");
+             this.processStatus = "결제 성공";
+             return false;
+        }
+*/
         System.out.println("결제 성공 했습니다.");
         this.processStatus = "결제 성공";
         return true;
