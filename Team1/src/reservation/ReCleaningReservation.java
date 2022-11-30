@@ -11,8 +11,8 @@ public class ReCleaningReservation {
 
     private CleaningReservation cleaningReservation;
 
-    public ReCleaningReservation(CleaningReservation cleaningReservation) {
-        this.cleaningReservation = cleaningReservation;
+    public ReCleaningReservation() {
+
     }
 
     public void selectReRequestCleanDate() {
