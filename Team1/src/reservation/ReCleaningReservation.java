@@ -51,24 +51,23 @@ public class ReCleaningReservation {
             throw new RuntimeException(e);
         }
 
+
         if (cleanInfo.size() == 0) {
             System.out.println("재요청을 할 수 있는 게 없습니다.");
             return;
         }
 
         for(int j = 0; j < cleanInfo.size(); j++){
-            System.out.println("완료시간 : "+ cleanInfo.get(j) + " 청소상태 : " + status);
+            System.out.println(j + ": 완료시간 : "+ cleanInfo.get(j) + " 청소상태 : " + status);
         }
         System.out.print("재청소 원하는 청소 번호 입력 : ");
-
         int tempDate = sc.nextInt();
-        tempDate --;
-        finishCleanTime = cleanInfo.get(tempDate);
 
-        if (cleanInfo.get(tempDate) == null) {
+        if (tempDate < 0 || tempDate >= cleanInfo.size()) {
             System.out.println("목록에 없는 날짜를 입력하셨습니다.");
             return;
         }
+        finishCleanTime = cleanInfo.get(tempDate);
 
         cleaningReserv.setProcessStatus("청소 완료");
         cleaningReserv.setFinishCleaningInfo(cleaningInfo);
