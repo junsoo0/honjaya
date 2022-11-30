@@ -1,9 +1,6 @@
 package reservation;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -11,7 +8,7 @@ import java.util.Scanner;
 
 public class ReCleaningReservation {
     private LocalDateTime signUpTime;
-    private String evidencePhoto;
+    private String evidencePhoto = "";
     private String reRequestReason;
     private Boolean isReRequestApproved;
     private LocalDateTime reRequestCleanDate;
@@ -52,6 +49,11 @@ public class ReCleaningReservation {
             throw new RuntimeException(e);
         }
 
+        if (cleanInfo.size() == 0) {
+            System.out.println("재요청을 할 수 있는 게 없습니다.");
+            return;
+        }
+
         for(LocalDateTime key : cleanInfo.keySet()){
             System.out.println("완료시간 : "+ key + " 청소상태 : " + cleanInfo.get(key));
         }
@@ -59,6 +61,11 @@ public class ReCleaningReservation {
 
         String tempDate = sc.nextLine();
         finishCleanTime = LocalDateTime.parse(tempDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+
+        if (cleanInfo.get(finishCleanTime) == null) {
+            System.out.println("목록에 없는 날짜를 입력하셨습니다.");
+            return;
+        }
 
         cleaningReserv.setProcessStatus(cleanInfo.get(finishCleanTime));
         cleaningReserv.setFinishCleaningInfo(cleaningInfo);
@@ -72,7 +79,22 @@ public class ReCleaningReservation {
         reRequestReason = sc.nextLine();
         setReRequestReason(reRequestReason);
 
-        System.out.print("증거 사진을 촬영해주세요: ");
+        System.out.print("증거 사진을 첨부해주세요(파일 경로 입력): ");
+
+        File src = new File(sc.nextLine());
+        try {
+            FileInputStream fi = new FileInputStream(src);
+            byte [] buf = new byte [1024*10];
+            while (true) {
+                int n = fi.read(buf);
+                evidencePhoto += buf;
+                if (n < buf.length)
+                    break;
+            }
+            fi.close();
+        } catch (IOException e) {
+            System.out.println("파일 복사 오류");
+        }
 
         // file explorer UI 등장
     }
