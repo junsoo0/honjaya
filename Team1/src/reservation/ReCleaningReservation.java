@@ -1,9 +1,12 @@
 package reservation;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ReCleaningReservation {
@@ -22,9 +25,10 @@ public class ReCleaningReservation {
     public void reRequestClean(String[] filenames, String path) {
         Scanner sc = new Scanner(System.in);
 
+        int i = 0;
         String status = "";
         LocalDateTime finishCleanTime = LocalDateTime.now();
-        HashMap<LocalDateTime, String> cleanInfo = new HashMap<LocalDateTime, String>();
+        ArrayList<LocalDateTime> cleanInfo = new ArrayList<LocalDateTime>();
 
         CleaningReservation cleaningReserv = new CleaningReservation();
         FinishCleaningInfo cleaningInfo = new FinishCleaningInfo();
@@ -43,7 +47,8 @@ public class ReCleaningReservation {
                     status = sLine;
                 }
                 if (status.equals("청소 완료") && finishCleanTime.plusHours(12).compareTo(LocalDateTime.now()) > 0)
-                    cleanInfo.put(finishCleanTime, status);
+                    cleanInfo.add(i,finishCleanTime);
+                i++;
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -54,13 +59,14 @@ public class ReCleaningReservation {
             return;
         }
 
-        for(LocalDateTime key : cleanInfo.keySet()){
-            System.out.println("완료시간 : "+ key + " 청소상태 : " + cleanInfo.get(key));
+        for(int j = 0; j < cleanInfo.size(); j++){
+            System.out.println("완료시간 : "+ cleanInfo.get(j) + " 청소상태 : " + status);
         }
-        System.out.print("재청소 원하는 날짜 입력(yyyy-MM-dd HH:mm) : ");
+        System.out.print("재청소 원하는 청소 번호 입력 : ");
 
-        String tempDate = sc.nextLine();
-        finishCleanTime = LocalDateTime.parse(tempDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        int tempDate = sc.nextInt();
+        tempDate --;
+        finishCleanTime = cleanInfo.get(tempDate);
 
         if (cleanInfo.get(finishCleanTime) == null) {
             System.out.println("목록에 없는 날짜를 입력하셨습니다.");
