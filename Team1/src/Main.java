@@ -96,12 +96,12 @@ public class Main {
                 }
                 System.out.println("--------------------------------------------------");
             } else if(input == 3) {
-                String status="";
+                String status = "";
                 LocalDateTime finishCleanTime = LocalDateTime.now();
                 HashMap<LocalDateTime, String> cleanInfo = new HashMap<LocalDateTime, String>();
 
-                CleaningReservation reCleaningReserv = new CleaningReservation();
-                FinishCleaningInfo reCleaningInfo = new FinishCleaningInfo();
+                CleaningReservation cleaningReserv = new CleaningReservation();
+                FinishCleaningInfo cleaningInfo = new FinishCleaningInfo();
 
                 String[] filenames = file.list();
                 //파일 불러서 status , finishcleantime string으로 받았다면, for문으로 받았을 때
@@ -130,22 +130,16 @@ public class Main {
                     System.out.println("완료시간 : "+ key + " 청소상태 : " + cleanInfo.get(key));
                 }
                 System.out.print("재청소 원하는 날짜 입력(yyyy-MM-dd HH:mm) : ");
-                in.nextLine();
+                in.nextLine(); // 버퍼 비우기
                 String tempDate = in.nextLine();
                 finishCleanTime = LocalDateTime.parse(tempDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
-                reCleaningReserv.setProcessStatus(cleanInfo.get(finishCleanTime));
-                reCleaningReserv.setFinishCleaningInfo(reCleaningInfo);
+                cleaningReserv.setProcessStatus(cleanInfo.get(finishCleanTime));
+                cleaningReserv.setFinishCleaningInfo(cleaningInfo);
+                cleaningInfo.setFinishCleanTime(finishCleanTime);
 
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                //reCleaningInfo.setFinishCleanTime(LocalDateTime.parse(finishCleanTime, formatter));
-
-                ReCleaningReservation reCleaningReserv = new ReCleaningReservation(cleaningReserv);
+                ReCleaningReservation reCleaningReserv = new ReCleaningReservation();
                 reCleaningReserv.reRequestClean();
-
-
-                System.out.println("구현 필요");
-
             } else if (input == 4){
                 System.out.println("감사합니다. 안녕히 가세요.");
                 break;
