@@ -1,6 +1,5 @@
 import account.*;
 import reservation.*;
-import review.*;
 
 import java.io.*;
 import java.time.format.DateTimeFormatter;
@@ -11,6 +10,7 @@ public class Main {
         int[] tempCreditInfo = {1,2,3};
         User user = new User("usr1", "01034235643", "kynpook@knu.ac.kr", "1234!!", "경북대 북문", tempCreditInfo,false);
         CleaningReservation cr = new CleaningReservation();
+        cr.setUser(user);
 
         String path = System.getProperty("user.dir") + File.separator + user.getname();
         System.out.println("파일 절대 경로 : "+path);
@@ -24,11 +24,9 @@ public class Main {
 
         Scanner in = new Scanner(System.in);
 
-
         while(true) {
             System.out.println(user.getname() + "님 반갑습니다.");
-            System.out.println("메뉴를 선택해주세요(숫자)");
-            System.out.println("");
+            System.out.println("메뉴를 선택해주세요(숫자)\n");
             System.out.println("1. 청소 요청 정보 불러오기");
             System.out.println("2. 청소 요청");
             System.out.println("3. 청소 재요청");
