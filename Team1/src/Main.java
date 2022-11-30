@@ -122,7 +122,7 @@ public class Main {
                 // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                 cleaningInf.setFinishCleanTime(finishCleanTime);
 
-                ReCleaningReservation reCleaningReserv = new ReCleaningReservation(cleaningReserv);
+                ReCleaningReservation reCleaningReserv = new ReCleaningReservation();
                 reCleaningReserv.reRequestClean();
 
 
