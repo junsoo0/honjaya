@@ -97,13 +97,15 @@ public class Main {
                 String status;
                 String finishCleanTime;
 
-                CleaningReservation reCleaningReserv = new CleaningReservation();
-                FinishCleaningInfo reCleaningInfo = new FinishCleaningInfo();
+
+                CleaningReservation cleaningReserv = new CleaningReservation();
+                FinishCleaningInfo cleaningInf = new FinishCleaningInfo();
 
                 //파일 불러서 status , finishcleantime string으로 받았다면, for문으로 받았을 때
                 //while();{
                 HashMap<String, String> cleanInfo = new HashMap<String, String>();
-                cleanInfo.put(finishCleanTime, status);
+                if (status.equals("청소 완료") && finishCleanTime.plusHours(12).compareTo(LocalDateTime.now()) > 0)
+                    cleanInfo.put(finishCleanTime, status);
 
                 for(String key : cleanInfo.keySet()){
                     System.out.println("완료시간 : "+key + "청소상태 : " + cleanInfo.get(key));
@@ -111,11 +113,15 @@ public class Main {
                 System.out.print("재청소 원하는 날짜 입력 : ");
                 finishCleanTime = in.nextLine();
 
-                reCleaningReserv.setProcessStatus(cleanInfo.get(finishCleanTime));
-                reCleaningReserv.setFinishCleaningInfo(reCleaningInfo);
+                cleaningReserv.setProcessStatus(cleanInfo.get(finishCleanTime));
+                cleaningReserv.setFinishCleaningInfo(cleaningInf);
 
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                reCleaningInfo.setFinishCleanTime(LocalDateTime.parse(finishCleanTime, formatter));
+                // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                cleaningInf.setFinishCleanTime(finishCleanTime);
+
+                ReCleaningReservation reCleaningReserv = new ReCleaningReservation(cleaningReserv);
+                reCleaningReserv.reRequestClean();
+
 
                 System.out.println("--------------------------------------------------");
                 System.out.println("구현 필요");
