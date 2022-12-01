@@ -69,6 +69,7 @@ public class Main {
                     else{
                         System.out.println("File already Exists");
                     }
+                    System.out.println();
                 }
                 catch (IOException e){
                     e.printStackTrace();
