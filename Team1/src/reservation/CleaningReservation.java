@@ -1,5 +1,7 @@
 package reservation;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -40,19 +42,42 @@ public class CleaningReservation {
             this.reserveType        = in.nextLine();
             if(reserveType.equals("1회") || reserveType.equals("정기")){
                 break;
+            } else {
+                System.out.println("다시 입력해 주세요.");
+                System.out.println();
             }
         }
 
-        // 청소 면적 선택(예외 구현 안함)
-        System.out.println("청소 면적을 선택해 주세요.");
-        this.cleaningSpace = in.nextInt();
+        // 청소 면적 선택(예외 구현 완료)
+        while(true) {
+            System.out.println("청소 면적을 선택해 주세요.(1~40평 사이값을 입력해 주세요.)");
+            this.cleaningSpace = in.nextInt();
+            if(cleaningSpace > 40){
+                System.out.println(cleaningSpace + "평으로 잘못 입력 했습니다. 다시 입력해 주세요.");
+            } else if(cleaningSpace < 1){
+                System.out.println(cleaningSpace + "평으로 잘못 입력 했습니다. 다시 입력해 주세요.");
+            }else{
+                break;
+            }
+            System.out.println();
+        }
         in.nextLine();
 
-        // 예약 기간 선택(예외 구현 안함)
-        System.out.println("예약 기간을 선택해 주세요(yyyy-MM-dd HH:mm).");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        String tempDate = in.nextLine();
-        this.reservationDate = LocalDateTime.parse(tempDate, formatter);
+        // 예약 기간 선택(예외 구현 완료)
+        while(true) {
+            System.out.println("예약 기간을 선택해 주세요(yyyy-MM-dd HH:mm).");
+            System.out.println("한자리 숫자인 경우 앞에 0을 붙이세요(ex, 2022-06-06 06:00)");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            String tempDate = in.nextLine();
+
+            if (checkDateFormat(tempDate)){
+                this.reservationDate = LocalDateTime.parse(tempDate, formatter);
+                break;
+            } else {
+                System.out.println("잘못된 날짜 형식입니다. 다시 입력해 주세요.");
+                System.out.println();
+            }
+        }
 
         // 예약 장소 선택(예외 구현 완료)
         System.out.println("예약 지역을 선택해 주세요.(0.대구, 1.부산, 2.대전, 3.서울, 4.광주 )");
@@ -74,6 +99,8 @@ public class CleaningReservation {
                     this.location = "광주 ";
                     break;
                 default:
+                    System.out.println("잘못 선택하셨습니다. 다시 입력해 주세요.");
+                    System.out.println();
                     continue;
             }
             break;
@@ -83,7 +110,6 @@ public class CleaningReservation {
         System.out.println("예약 주소을 선택해 주세요.");
         this.location.concat(in.nextLine());
 
-
         //추가 옵션 선택 과정
         this.additionalOption = new AdditionalOption();
         this.additionalOption.requestAdditionalOption();
@@ -91,21 +117,25 @@ public class CleaningReservation {
         // 밀키트 주문 과정
         while(true){
             System.out.println("밀키트를 주문하시겠습니까(Y/N)?");
+            System.out.println("1회인 경우 1주차만, 정기인 경우 4주차까지 선택 가능합니다.");
             String answer = in.next();
             if(answer.equals("Y")) {
                 Mealkit tempMealkit = new Mealkit();
                 tempMealkit.requestMealkit();
                 this.mealkit.add(tempMealkit);
             }
-            else {
+            else if(answer.equals("N")) {
                 System.out.println("밀키트 주문을 종료합니다.");
                 break;
+            } else {
+                System.out.println("'Y' 또는 'N'을 입력해주세요.");
+                System.out.println();
             }
         }
         //진행 상황
         this.processStatus      = "예약 대기";
         
-        //가격 측정(예외 구현 안함)
+        //가격 측정
         if(cleaningSpace <= 9){
             this.price += 60000;
         } else if(cleaningSpace < 20) {
@@ -182,6 +212,26 @@ public class CleaningReservation {
         this.processStatus = "청소 완료";
     }
 
+    //날짜 형식 검사
+    public static boolean checkDateFormat(String checkDate) {
+        String dateFormat = "yyyy-MM-dd HH:mm";
+        if(checkDate.length() < dateFormat.length()) {
+            return false;
+        }
+
+        if(checkDate.length() > dateFormat.length()) {
+            return false;
+        }
+
+        SimpleDateFormat dateFormatParser = new SimpleDateFormat(dateFormat); //검증할 날짜 포맷 설정
+        dateFormatParser.setLenient(false); //false일경우 처리시 입력한 값이 잘못된 형식일 시 오류가 발생
+        try {
+            dateFormatParser.parse(checkDate); //대상 값 포맷에 적용되는지 확인
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+    }
     public String getReserveType() {
         return reserveType;
     }
