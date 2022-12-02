@@ -177,6 +177,21 @@ public class CleaningReservation {
     }
 
     public Boolean requestPayment() {
+        String answer;
+        Scanner sc = new Scanner(System.in);
+
+
+        while(true) {
+            System.out.println("결제를 하시겠습니까?(Y/N): ");
+            answer = sc.next();
+            if (answer.equals("Y")) {
+                break;
+            } else if (answer.equals("N")) {
+                return false;
+            } else {
+                System.out.println("'Y' 또는 'N'을 입력해주세요.");
+            }
+        }
         //int[] creditInfo = user.getcreditInfo();
         int allPrice = this.sumPrice();
 

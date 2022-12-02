@@ -19,7 +19,6 @@ public class Main {
         file.mkdir(); //user name으로 된 directory 생성, (user's dm layer..)
 
 
-
         Scanner in = new Scanner(System.in);
 
         while(true) {
@@ -51,7 +50,6 @@ public class Main {
                         while( (sLine = reader.readLine()) != null ){
                             System.out.print(sLine + " | ");
                         }
-
                         System.out.print("\n");
                     }
                 } catch (IOException e) {
@@ -61,35 +59,42 @@ public class Main {
             } else if(input == 2) {
                 System.out.println("--------------------------------------------------");
                 cr.requestClean();
-                File file2 = new File(path + "/" + cr.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+".txt");
-                try{
-                    if(file2.createNewFile()){
-                        System.out.println("File created");
+
+                boolean check = cr.requestPayment();
+                if(check) {
+                    File file2 = new File(path + "/" + cr.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+".txt");
+                    try{
+                        if(file2.createNewFile()){
+                            System.out.println("File created");
+                        }
+                        else{
+                            System.out.println("File already Exists");
+                        }
+                        System.out.println();
                     }
-                    else{
-                        System.out.println("File already Exists");
+                    catch (IOException e){
+                        e.printStackTrace();
                     }
-                    System.out.println();
+                    try {
+
+                        BufferedWriter writer = new BufferedWriter(new FileWriter(file2));
+
+                        writer.write(cr.getProcessStatus());
+                        writer.write("\r\n");
+                        writer.write(cr.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+
+                        writer.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(cr.getProcessStatus());
+
+                    cr.completeCleaning();
                 }
-                catch (IOException e){
-                    e.printStackTrace();
+                else {
+                    System.out.println("결제를 취소하셨습니다.");
                 }
-                System.out.println(cr.getProcessStatus());
-                cr.requestPayment();
-                cr.completeCleaning();
 
-                try {
-
-                    BufferedWriter writer = new BufferedWriter(new FileWriter(file2));
-
-                    writer.write(cr.getProcessStatus());
-                    writer.write("\r\n");
-                    writer.write(cr.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
-
-                    writer.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
                 System.out.println("--------------------------------------------------");
             } else if(input == 3) {
                 String[] filenames = file.list();
