@@ -1,5 +1,13 @@
 package account;
 
+import file.UserFile;
+import reservation.CleaningReservation;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class User extends Account {
     private String address;
     private int[] creditInfo;
@@ -36,11 +44,36 @@ public class User extends Account {
     }
 
 
-    /*
+
     public void showAllList() {
         //this method show all reservations of user.
+        CleaningReservation cr = new CleaningReservation(this);
+        UserFile uf = new UserFile(cr);
+        File file = new File(uf.getPath());
+        String path = uf.getPath();
+
+        System.out.println("--------------------------------------------------");
+        System.out.println("[" + this.getname() + "님의 예약 정보]");
+        String[] filenames = file.list();
+        System.out.println("       예약 날짜       진행 상태 ");
+        try {
+            int i = 1;
+            for (String filename : filenames) {
+                File rf = new File(path + "/" + filename);
+                BufferedReader reader = new BufferedReader(new FileReader(rf));
+                String sLine;
+                System.out.print(i++ + ": ");
+                while( (sLine = reader.readLine()) != null ){
+                    System.out.print(sLine + " | ");
+                }
+                System.out.print("\n");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
+    /*
     public void editInfo() {
         // this method is used to edit User's Information.
     }

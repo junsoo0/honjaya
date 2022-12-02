@@ -19,30 +19,7 @@ public class UserUI {
     }
 
     public void userMenu1() {
-        CleaningReservation cr = new CleaningReservation(user);
-        UserFile uf = new UserFile(cr);
-        File file = new File(uf.getPath());
-        String path = uf.getPath();
-
-        System.out.println("--------------------------------------------------");
-        System.out.println("[" + user.getname() + "님의 예약 정보]");
-        String[] filenames = file.list();
-        System.out.println("       예약 날짜       진행 상태 ");
-        try {
-            int i = 1;
-            for (String filename : filenames) {
-                File rf = new File(path + "/" + filename);
-                BufferedReader reader = new BufferedReader(new FileReader(rf));
-                String sLine;
-                System.out.print(i++ + ": ");
-                while( (sLine = reader.readLine()) != null ){
-                    System.out.print(sLine + " | ");
-                }
-                System.out.print("\n");
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        user.showAllList();
         System.out.println("--------------------------------------------------");
     }
 
@@ -101,6 +78,11 @@ public class UserUI {
 
     public void userMenu3() {
         CleaningReservation cr = new CleaningReservation(user);
+        ReCleaningReservation reCleaningReserv = new ReCleaningReservation(cr);
+        reCleaningReserv.reRequestClean(user);
+
+        /*
+        CleaningReservation cr = new CleaningReservation(user);
         UserFile uf = new UserFile(cr);
         File file = new File(uf.getPath());
         String path = uf.getPath();
@@ -113,6 +95,7 @@ public class UserUI {
             ReCleaningReservation reCleaningReserv = new ReCleaningReservation(cr);
             reCleaningReserv.reRequestClean(filenames, path);
         }
+        */
     }
 
 
