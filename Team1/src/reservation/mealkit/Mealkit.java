@@ -84,7 +84,7 @@ public class Mealkit {
             }
         System.out.println("=========================================");
         for (String j : menu.keySet()) {
-            System.out.printf("%d. %10s     %7s\n", cnt, j, menu.get(j)+"원");
+            System.out.print(cnt + ". " + String.format("%-10s",j) + String.format("%-7s",menu.get(j)+"원"));
             cnt++;
         }
         System.out.println("=========================================");
