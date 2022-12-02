@@ -223,7 +223,7 @@ public class CleaningReservation {
     public void completeCleaning() {
         LocalDateTime tempFinsihCleanTime = this.reservationDate;
         this.finishCleaningInfo.setFinishCleanTime(tempFinsihCleanTime.plusHours(2));
-        System.out.println("청소 완료 했습니다");
+        System.out.println("청소 완료 했습니다.");
         this.processStatus = "청소 완료";
     }
 
