@@ -15,7 +15,7 @@ public class AdditionalOption {
         int additionalPrice = 0;
 
         while(true) {
-            System.out.print("빨래를 추가하시겠습니까?(Y/N): ");
+            System.out.print("빨래를 추가하시겠습니까?(Y/N) : ");
             answer = sc.next();
             if (answer.equals("Y")) {
                 setLaundry(true);
@@ -25,11 +25,12 @@ public class AdditionalOption {
                 break;
             } else {
                 System.out.println("'Y' 또는 'N'을 입력해주세요.");
+                System.out.println();
             }
         }
 
         while(true) {
-            System.out.print("설거지를 추가하시겠습니까?(Y/N): ");
+            System.out.print("설거지를 추가하시겠습니까?(Y/N) : ");
             answer = sc.next();
             if (answer.equals("Y")) {
                 setDishWash(true);
@@ -39,11 +40,12 @@ public class AdditionalOption {
                 break;
             } else {
                 System.out.println("'Y' 또는 'N'을 입력해주세요.");
+                System.out.println();
             }
         }
 
         sc.nextLine();
-        System.out.print("추가 요구사항을 입력해주세요: ");
+        System.out.print("추가 요구사항을 입력해주세요. : ");
         additionalRequirement = sc.nextLine();
         setAdditionalRequirement(additionalRequirement);
 

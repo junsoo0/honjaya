@@ -38,7 +38,7 @@ public class CleaningReservation {
 
         // 예약 유형 선택(예외 구현 완료)
         while(true) {
-            System.out.println("예약 유형을 선택해 주세요(1회, 정기). ");
+            System.out.print("예약 유형을 선택해 주세요.(1회, 정기) : ");
             this.reserveType        = in.nextLine();
             if(reserveType.equals("1회") || reserveType.equals("정기")){
                 break;
@@ -50,7 +50,7 @@ public class CleaningReservation {
 
         // 청소 면적 선택(예외 구현 완료)
         while(true) {
-            System.out.println("청소 면적을 선택해 주세요.(1~40평 사이값을 입력해 주세요.)");
+            System.out.print("청소 면적을 선택해 주세요.(1~40평 사이값을 입력해 주세요.) : ");
             this.cleaningSpace = in.nextInt();
             if(cleaningSpace > 40){
                 System.out.println(cleaningSpace + "평으로 잘못 입력 했습니다. 다시 입력해 주세요.");
@@ -68,6 +68,7 @@ public class CleaningReservation {
             System.out.println("예약 기간을 선택해 주세요(yyyy-MM-dd HH:mm).");
             System.out.println("한자리 숫자인 경우 앞에 0을 붙이세요(ex, 2022-06-06 06:00)");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            System.out.print("예약 기간 입력 : ");
             String tempDate = in.nextLine();
 
             if (checkDateFormat(tempDate)){
@@ -92,7 +93,7 @@ public class CleaningReservation {
         // 예약 장소 선택(예외 구현 완료)
 
         while(true){
-            System.out.println("예약 지역을 선택해 주세요.(0.대구, 1.부산, 2.대전, 3.서울, 4.광주 )");
+            System.out.print("예약 지역을 선택해 주세요.(0.대구, 1.부산, 2.대전, 3.서울, 4.광주 ) : ");
             switch(in.nextInt()) {
                 case 0:
                     this.location = "대구 ";
@@ -118,7 +119,7 @@ public class CleaningReservation {
         }
         in.nextLine();
 
-        System.out.println("예약 주소을 선택해 주세요.");
+        System.out.print("예약 주소을 선택해 주세요. : ");
         this.location.concat(in.nextLine());
 
         //추가 옵션 선택 과정
@@ -127,7 +128,7 @@ public class CleaningReservation {
 
         // 밀키트 주문 과정
         while(true){
-            System.out.println("밀키트를 주문하시겠습니까(Y/N)?");
+            System.out.print("밀키트를 주문하시겠습니까?(Y/N) : ");
             String answer = in.next();
             if(answer.equals("Y")) {
                 Mealkit tempMealkit = new Mealkit(this);
@@ -191,7 +192,7 @@ public class CleaningReservation {
 
 
         while(true) {
-            System.out.println("결제를 하시겠습니까?(Y/N): ");
+            System.out.print("결제를 하시겠습니까?(Y/N) : ");
             answer = sc.next();
             if (answer.equals("Y")) {
                 break;
@@ -199,6 +200,7 @@ public class CleaningReservation {
                 return false;
             } else {
                 System.out.println("'Y' 또는 'N'을 입력해주세요.");
+                System.out.println();
             }
         }
         //int[] creditInfo = user.getcreditInfo();

@@ -70,35 +70,40 @@ public class Mealkit {
             setMealkitWeeks(1);
         else
             while (true) {
-                System.out.print("주차 선택(1 ~ 4) : ");
+                System.out.print("주차를 선택해주세요.(1 ~ 4) : ");
 
                 int week = sc.nextInt();
                 sc.nextLine();
                 if (week >= 1 && week <= 4) {
                     setMealkitWeeks(week);
                     break;
-                } else
+                } else {
                     System.out.println("1 ~ 4주차 이내로 선택해야 합니다.");
+                    System.out.println();
+                }
             }
         System.out.println("=========================================");
         for (String j : menu.keySet()) {
-            System.out.println(cnt + ". " + j + menu.get(j) + "원");
+            System.out.printf("%d. %10s     %7s\n", cnt, j, menu.get(j)+"원");
             cnt++;
         }
+        System.out.println("=========================================");
 
         while (true) {
-            System.out.print("원하는 메뉴의 이름을 입력하시오 : ");
+            System.out.print("원하는 메뉴의 이름을 입력해주세요. : ");
             menuName = sc.next();
             if (menu.get(menuName) != null) {
                 setMealkitMenu(menuName);  //메뉴 이름
                 break;
-            } else
+            } else {
                 System.out.println("메뉴 이름을 정확하게 입력해주세요.");
+                System.out.println();
+            }
         }
 
 
 
-        System.out.print("개수를 입력하시오 : ");
+        System.out.print("개수를 입력해주세요. : ");
         menuNumber = sc.nextInt();  //메뉴 개수
         setMealkitNum(menuNumber); //메뉴 개수 저장
         setMealkitPrice(Integer.parseInt(menu.get(menuName)) * menuNumber); //메뉴 가격 저장
