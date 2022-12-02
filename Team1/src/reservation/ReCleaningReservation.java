@@ -95,7 +95,7 @@ public class ReCleaningReservation {
             byte [] buf = new byte [1024*10];
             while (true) {
                 int n = fi.read(buf);
-                evidencePhoto += buf;
+                evidencePhoto += buf.toString();
                 if (n < buf.length)
                     break;
             }
