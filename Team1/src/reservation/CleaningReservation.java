@@ -118,11 +118,10 @@ public class CleaningReservation {
         // 밀키트 주문 과정
         while(true){
             System.out.println("밀키트를 주문하시겠습니까(Y/N)?");
-            System.out.println("1회인 경우 1주차만, 정기인 경우 4주차까지 선택 가능합니다.");
             String answer = in.next();
             if(answer.equals("Y")) {
-                Mealkit tempMealkit = new Mealkit();
-                tempMealkit.requestMealkit();
+                Mealkit tempMealkit = new Mealkit(this);
+                tempMealkit.requestMealkit(processStatus);
                 this.mealkit.add(tempMealkit);
             }
             else if(answer.equals("N")) {
@@ -177,6 +176,21 @@ public class CleaningReservation {
     }
 
     public Boolean requestPayment() {
+        String answer;
+        Scanner sc = new Scanner(System.in);
+
+
+        while(true) {
+            System.out.println("결제를 하시겠습니까?(Y/N): ");
+            answer = sc.next();
+            if (answer.equals("Y")) {
+                break;
+            } else if (answer.equals("N")) {
+                return false;
+            } else {
+                System.out.println("'Y' 또는 'N'을 입력해주세요.");
+            }
+        }
         //int[] creditInfo = user.getcreditInfo();
         int allPrice = this.sumPrice();
 
