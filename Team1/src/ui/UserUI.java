@@ -1,14 +1,11 @@
 package ui;
 
-import file.UserFile;
+import file.ReservationFile;
 import reservation.CleaningReservation;
 import reservation.ReCleaningReservation;
 import account.User;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class UserUI {
@@ -25,7 +22,7 @@ public class UserUI {
 
     public void userMenu2() {
         CleaningReservation cr = new CleaningReservation(user);
-        UserFile uf = new UserFile(cr);
+        ReservationFile uf = new ReservationFile(cr);
         File file = new File(uf.getPath());
         String path = uf.getPath();
 

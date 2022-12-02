@@ -1,6 +1,6 @@
 package account;
 
-import file.UserFile;
+import file.ReservationFile;
 import reservation.CleaningReservation;
 
 import java.io.BufferedReader;
@@ -48,7 +48,7 @@ public class User extends Account {
     public void showAllList() {
         //this method show all reservations of user.
         CleaningReservation cr = new CleaningReservation(this);
-        UserFile uf = new UserFile(cr);
+        ReservationFile uf = new ReservationFile(cr);
         File file = new File(uf.getPath());
         String path = uf.getPath();
 

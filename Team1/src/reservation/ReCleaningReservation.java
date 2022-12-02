@@ -1,6 +1,6 @@
 package reservation;
 
-import file.UserFile;
+import file.ReservationFile;
 import account.User;
 import java.io.*;
 import java.time.LocalDateTime;
@@ -27,7 +27,7 @@ public class ReCleaningReservation {
 
     public void reRequestClean(User user) {
         CleaningReservation cleaningReserv = new CleaningReservation(user);
-        UserFile uf = new UserFile(cleaningReserv);
+        ReservationFile uf = new ReservationFile(cleaningReserv);
         File file = new File(uf.getPath());
         String path = uf.getPath();
 
