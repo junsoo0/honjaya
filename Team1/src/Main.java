@@ -32,7 +32,7 @@ public class Main {
             System.out.println("3. 청소 재요청");
             System.out.println("4. 종료");
 
-            System.out.println("메뉴를 선택해주세요(숫자) : \n");
+            System.out.print("\n메뉴를 선택해주세요(숫자) : ");
             int input = in.nextInt();
 
             if(input == 1) {
