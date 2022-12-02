@@ -2,7 +2,6 @@ import account.*;
 import reservation.*;
 
 import java.io.*;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
@@ -17,7 +16,6 @@ public class Main {
         System.out.println("파일 절대 경로 : "+path);
         File file = new File(path);
         file.mkdir(); //user name으로 된 directory 생성, (user's dm layer..)
-
 
         Scanner in = new Scanner(System.in);
 
@@ -45,7 +43,7 @@ public class Main {
                     for (String filename : filenames) {
                         File rf = new File(path + "/" + filename);
                         BufferedReader reader = new BufferedReader(new FileReader(rf));
-                        String sLine = null;
+                        String sLine;
                         System.out.print(i++ + ": ");
                         while( (sLine = reader.readLine()) != null ){
                             System.out.print(sLine + " | ");
@@ -75,6 +73,7 @@ public class Main {
                     catch (IOException e){
                         e.printStackTrace();
                     }
+                    cr.completeCleaning();
                     try {
 
                         BufferedWriter writer = new BufferedWriter(new FileWriter(file2));
@@ -87,9 +86,6 @@ public class Main {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    System.out.println(cr.getProcessStatus());
-
-                    cr.completeCleaning();
                 }
                 else {
                     System.out.println("결제를 취소하셨습니다.");
