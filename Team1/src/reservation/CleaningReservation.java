@@ -73,10 +73,20 @@ public class CleaningReservation {
 
             if (checkDateFormat(tempDate)){
                 this.reservationDate = LocalDateTime.parse(tempDate, formatter);
-                break;
             } else {
                 System.out.println("잘못된 날짜 형식입니다. 다시 입력해 주세요.");
                 System.out.println();
+                continue;
+            }
+
+            if (reservationDate.isBefore(LocalDateTime.now())) {
+                System.out.println("현재 시간 보다 과거 예약일 입니다. 다시 입력해 주세요.");
+                System.out.println();
+            } else if(reservationDate.isEqual(LocalDateTime.now())) {
+                System.out.println("이미 예약된 시간입니다. 다시 입력해 주세요.");
+                System.out.println();
+            } else {
+                break;
             }
         }
 
