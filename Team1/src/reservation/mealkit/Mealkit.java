@@ -11,6 +11,12 @@ public class Mealkit {
     private int mealkitPrice;   //밀키트 가격
     private int mealkitWeeks;   //밀키트 몇주차
 
+    CleaningReservation cleaningReservation;
+
+    public Mealkit(CleaningReservation cleaningReservation) {
+        this.cleaningReservation = cleaningReservation;
+    }
+
     public void setMealkitNum(int mealkitNum) {
         this.mealkitNum = mealkitNum;
     }
@@ -44,7 +50,7 @@ public class Mealkit {
     }
 
     //밀키트 예약요청 함수
-    public void requestMealkit() {
+    public void requestMealkit(String processStatus) {
         HashMap<String, String> menu = new HashMap<String, String>();
         Scanner sc = new Scanner(System.in);
 
@@ -60,16 +66,37 @@ public class Mealkit {
         menu.put("야채볶음밥", "10000");
 
         System.out.println("=============MealKit Request=============");
-        System.out.println("주차 선택 : ");
-        setMealkitWeeks(sc.nextInt());
+        if (processStatus.equals("1회"))
+            setMealkitWeeks(1);
+        else
+            while (true) {
+                System.out.print("주차 선택(1 ~ 4) : ");
+
+                int week = sc.nextInt();
+                sc.nextLine();
+                if (week >= 1 && week <= 4) {
+                    setMealkitWeeks(week);
+                    break;
+                } else
+                    System.out.println("1 ~ 4주차 이내로 선택해야 합니다.");
+            }
         System.out.println("=========================================");
         for (String j : menu.keySet()) {
             System.out.println(cnt + ". " + j + menu.get(j) + "원");
             cnt++;
         }
-        System.out.print("원하는 메뉴의 이름을 입력하시오 : ");
-        menuName = sc.next();
-        setMealkitMenu(menuName);  //메뉴 이름
+
+        while (true) {
+            System.out.print("원하는 메뉴의 이름을 입력하시오 : ");
+            menuName = sc.next();
+            if (menu.get(menuName) != null) {
+                setMealkitMenu(menuName);  //메뉴 이름
+                break;
+            } else
+                System.out.println("메뉴 이름을 정확하게 입력해주세요.");
+        }
+
+
 
         System.out.print("개수를 입력하시오 : ");
         menuNumber = sc.nextInt();  //메뉴 개수

@@ -42,6 +42,7 @@ public class AdditionalOption {
             }
         }
 
+        sc.nextLine();
         System.out.print("추가 요구사항을 입력해주세요: ");
         additionalRequirement = sc.nextLine();
         setAdditionalRequirement(additionalRequirement);

@@ -29,11 +29,13 @@ public class Main {
             System.out.println("--------------------------------------------------");
 
             System.out.println(user.getname() + "님 반갑습니다.");
-            System.out.println("메뉴를 선택해주세요(숫자)\n");
+
             System.out.println("1. 청소 요청 정보 불러오기");
             System.out.println("2. 청소 요청");
             System.out.println("3. 청소 재요청");
             System.out.println("4. 종료");
+
+            System.out.println("메뉴를 선택해주세요(숫자) : \n");
             int input = in.nextInt();
 
             if(input == 1) {
