@@ -26,6 +26,7 @@ public class ReCleaningReservation {
         String status = "";
         LocalDateTime finishCleanTime = LocalDateTime.now();
         ArrayList<LocalDateTime> cleanInfo = new ArrayList<LocalDateTime>();
+        this.signUpTime = LocalDateTime.now();
 
         CleaningReservation cleaningReserv = new CleaningReservation();
         FinishCleaningInfo cleaningInfo = new FinishCleaningInfo();
@@ -43,8 +44,8 @@ public class ReCleaningReservation {
                 if ((sLine = reader.readLine()) != null) {
                     status = sLine;
                 }
-                if (status.equals("청소 완료") && finishCleanTime.plusHours(12).compareTo(LocalDateTime.now()) > 0)
-                    cleanInfo.add(i,finishCleanTime);
+                if (status.equals("청소 완료") && finishCleanTime.plusHours(12).compareTo(this.signUpTime) > 0)
+                    cleanInfo.add(i, finishCleanTime);
                 i++;
             }
         } catch (IOException e) {

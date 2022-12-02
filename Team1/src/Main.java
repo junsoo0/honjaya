@@ -4,7 +4,6 @@ import reservation.*;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -70,6 +69,7 @@ public class Main {
                     else{
                         System.out.println("File already Exists");
                     }
+                    System.out.println();
                 }
                 catch (IOException e){
                     e.printStackTrace();
@@ -85,8 +85,6 @@ public class Main {
                     writer.write(cr.getProcessStatus());
                     writer.write("\r\n");
                     writer.write(cr.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
-                    writer.write("\r\n");
-                    writer.write(cr.getProcessStatus());
 
                     writer.close();
                 } catch (IOException e) {
