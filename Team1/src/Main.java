@@ -1,4 +1,5 @@
 import account.*;
+import file.UserFile;
 import reservation.*;
 
 import java.io.*;
@@ -11,11 +12,16 @@ public class Main {
         User user = new User("usr1", "01034235643", "kynpook@knu.ac.kr", "1234!!", "경북대 북문", tempCreditInfo,false);
         CleaningReservation cr = new CleaningReservation();
         cr.setUser(user);
+        UserFile uf = new UserFile(cr);
+        File file = new File(uf.getPath());
+        String path = uf.getPath();
 
+        /*
         String path = System.getProperty("user.dir") + File.separator + user.getname();
         System.out.println("파일 절대 경로 : "+path);
         File file = new File(path);
         file.mkdir(); //user name으로 된 directory 생성, (user's dm layer..)
+        */
 
         Scanner in = new Scanner(System.in);
 
@@ -61,7 +67,9 @@ public class Main {
                 cr.requestClean();
 
                 boolean check = cr.requestPayment();
+
                 if(check) {
+                    /*
                     File file2 = new File(path + "/" + cr.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+".txt");
                     try{
                         if(file2.createNewFile()){
@@ -75,7 +83,11 @@ public class Main {
                     catch (IOException e){
                         e.printStackTrace();
                     }
+                    */
+                    File recv_file = uf.createFile();
+
                     cr.completeCleaning();
+                    /*
                     try {
 
                         BufferedWriter writer = new BufferedWriter(new FileWriter(file2));
@@ -88,6 +100,8 @@ public class Main {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    */
+                    uf.writeFile(recv_file);
                 }
                 else {
                     System.out.println("결제를 취소하셨습니다.");
