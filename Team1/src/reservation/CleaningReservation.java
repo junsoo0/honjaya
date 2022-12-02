@@ -33,6 +33,8 @@ public class CleaningReservation {
     private ReCleaningReservation   reCleaningReservation;
     private Review                  review;
 
+
+
     public void requestClean() {
         Scanner in = new Scanner(System.in);
 
@@ -326,5 +328,9 @@ public class CleaningReservation {
 
     public FinishCleaningInfo getFinishCleaningInfo() {
         return finishCleaningInfo;
+    }
+
+    public User getUser() {
+        return user;
     }
 }
