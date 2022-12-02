@@ -35,6 +35,9 @@ public class CleaningReservation {
 
 
 
+    public CleaningReservation(User user) {
+        this.user = user;
+    }
     public void requestClean() {
         Scanner in = new Scanner(System.in);
 

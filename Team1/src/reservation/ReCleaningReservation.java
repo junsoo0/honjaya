@@ -19,6 +19,10 @@ public class ReCleaningReservation {
 
     }
 
+    public ReCleaningReservation(CleaningReservation cleaningReservation) {
+        this.cleaningReservation = cleaningReservation;
+    }
+
     public void reRequestClean(String[] filenames, String path) {
         Scanner sc = new Scanner(System.in);
 
