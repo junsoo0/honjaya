@@ -85,8 +85,6 @@ public class Main {
                     writer.write(cr.getProcessStatus());
                     writer.write("\r\n");
                     writer.write(cr.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
-                    writer.write("\r\n");
-                    writer.write(cr.getProcessStatus()); //?
 
                     writer.close();
                 } catch (IOException e) {
