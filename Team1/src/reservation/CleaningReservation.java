@@ -70,8 +70,8 @@ public class CleaningReservation {
 
         // 예약 기간 선택(예외 구현 완료)
         while(true) {
-            System.out.println("예약 기간을 선택해 주세요(yyyy-MM-dd HH:mm).");
-            System.out.println("한자리 숫자인 경우 앞에 0을 붙이세요(ex, 2022-06-06 06:00)");
+            System.out.println("예약 기간을 선택해 주세요.(yyyy-MM-dd HH:mm)");
+            System.out.println("한자리 숫자인 경우 앞에 0을 붙여주세요.(ex, 2022-06-06 06:00)");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             System.out.print("예약 기간 입력 : ");
             String tempDate = in.nextLine();
@@ -98,7 +98,7 @@ public class CleaningReservation {
         // 예약 장소 선택(예외 구현 완료)
 
         while(true){
-            System.out.print("예약 지역을 선택해 주세요.(1.대구, 2.부산, 3.대전, 4.서울, 5.광주 ) : ");
+            System.out.print("예약 지역을 선택해 주세요.(1.대구, 2.부산, 3.대전, 4.서울, 5.광주) : ");
             switch(in.nextInt()) {
                 case 1:
                     this.location = "대구 ";
