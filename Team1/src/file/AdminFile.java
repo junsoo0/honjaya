@@ -1,4 +1,3 @@
 package file;
-public class AdminFile {
-
+public class AdminFile {//sss
 }
