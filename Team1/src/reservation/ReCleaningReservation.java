@@ -1,5 +1,7 @@
 package reservation;
 
+import file.ReservationFile;
+import account.User;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,16 +21,29 @@ public class ReCleaningReservation {
 
     }
 
-    public void reRequestClean(String[] filenames, String path) {
+    public ReCleaningReservation(CleaningReservation cleaningReservation) {
+        this.cleaningReservation = cleaningReservation;
+    }
+
+    public void reRequestClean(User user) {
+        CleaningReservation cleaningReserv = new CleaningReservation(user);
+        ReservationFile uf = new ReservationFile(cleaningReserv);
+        File file = new File(uf.getPath());
+        String path = uf.getPath();
+
+        String[] filenames = file.list();
+        if (file.list().length == 0) {
+            System.out.println("신청한 청소 내역이 없습니다.");
+            return;
+        }
+
         Scanner sc = new Scanner(System.in);
 
-        int i = 0;
         String status = "";
         LocalDateTime finishCleanTime = LocalDateTime.now();
         ArrayList<LocalDateTime> cleanInfo = new ArrayList<LocalDateTime>();
         this.signUpTime = LocalDateTime.now();
 
-        CleaningReservation cleaningReserv = new CleaningReservation();
         FinishCleaningInfo cleaningInfo = new FinishCleaningInfo();
 
         //String[] filenames = file.list();
@@ -39,14 +54,13 @@ public class ReCleaningReservation {
                 BufferedReader reader = new BufferedReader(new FileReader(rf));
                 String sLine = null;
                 if ((sLine = reader.readLine()) != null) {
-                    finishCleanTime = LocalDateTime.parse(sLine, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-                }
-                if ((sLine = reader.readLine()) != null) {
                     status = sLine;
                 }
+                if ((sLine = reader.readLine()) != null) {
+                    finishCleanTime = LocalDateTime.parse(sLine, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+                }
                 if (status.equals("청소 완료") && finishCleanTime.plusHours(12).compareTo(this.signUpTime) > 0)
-                    cleanInfo.add(i, finishCleanTime);
-                i++;
+                    cleanInfo.add(finishCleanTime);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -58,22 +72,24 @@ public class ReCleaningReservation {
             return;
         }
 
-        for(int j = 0; j < cleanInfo.size(); j++){
-            System.out.println(j + ": 완료시간 : "+ cleanInfo.get(j) + " 청소상태 : " + status);
+        for (int j = 0; j < cleanInfo.size(); j++) {
+            System.out.println(j + ". 완료시간 : " +
+                    cleanInfo.get(j).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + " | 청소상태 : " + status);
         }
-        System.out.print("재청소 원하는 청소 번호 입력 : ");
-        int tempDate = sc.nextInt();
-        sc.nextLine();
 
         while (true) {
+            System.out.print("재청소 원하는 청소 번호 입력 : ");
+            int tempDate = sc.nextInt();
+            sc.nextLine();
+
             if (tempDate < 0 || tempDate >= cleanInfo.size()) {
-                System.out.println("목록에 없는 번호를 입력하셨습니다. 다시 입력해주세요: ");
-                tempDate = sc.nextInt();
-            }
-            else
+                System.out.println("목록에 없는 번호를 입력하셨습니다.");
+                System.out.println();
+            } else {
+                finishCleanTime = cleanInfo.get(tempDate);
                 break;
+            }
         }
-        finishCleanTime = cleanInfo.get(tempDate);
 
         cleaningReserv.setProcessStatus("청소 완료");
         cleaningReserv.setFinishCleaningInfo(cleaningInfo);
@@ -83,27 +99,31 @@ public class ReCleaningReservation {
         FinishCleaningInfo finishCleaningInfo = cleaningReservation.getFinishCleaningInfo();
         finishCleanTime = finishCleaningInfo.getFinishCleanTime();
 
-        System.out.print("재요청 사유를 입력해주세요: ");
+        System.out.print("재요청 사유를 입력해주세요. : ");
         reRequestReason = sc.nextLine();
         setReRequestReason(reRequestReason);
 
-        System.out.print("증거 사진을 첨부해주세요(파일 경로 입력): ");
+        while (true) {
+            System.out.print("증거 사진을 첨부해주세요.(파일 경로 입력) : ");
+            File src = new File(sc.nextLine());
 
-        File src = new File(sc.nextLine());
-        try {
-            FileInputStream fi = new FileInputStream(src);
-            byte [] buf = new byte [1024*10];
-            while (true) {
-                int n = fi.read(buf);
-                evidencePhoto += buf.toString();
-                if (n < buf.length)
-                    break;
+            try {
+                FileInputStream fi = new FileInputStream(src);
+                byte[] buf = new byte[1024 * 10];
+                while (true) {
+                    int n = fi.read(buf);
+                    evidencePhoto += buf.toString();
+                    if (n < buf.length)
+                        break;
+                }
+                fi.close();
+                break;
+                } catch (IOException e) {
+                    System.out.println("파일 복사 오류");
             }
-            fi.close();
-        } catch (IOException e) {
-            System.out.println("파일 복사 오류");
         }
 
+        System.out.println("청소 재요청이 완료되었습니다.");
         // file explorer UI 등장
     }
 

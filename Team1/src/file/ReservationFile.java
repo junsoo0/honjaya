@@ -9,13 +9,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
-public class UserFile {
+public class ReservationFile {
     private CleaningReservation rsrvInfo;
     private User user;
     private String path;
     private File folder;
 
-    public UserFile(CleaningReservation rsrvInfo) {
+    public ReservationFile(CleaningReservation rsrvInfo) {
         this.rsrvInfo = rsrvInfo;
         this.user = rsrvInfo.getUser();
         path = System.getProperty("user.dir") + File.separator + user.getname();
