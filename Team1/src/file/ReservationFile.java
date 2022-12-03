@@ -27,9 +27,9 @@ public class ReservationFile {
         File file = new File(path + "/" + rsrvInfo.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ".txt");
         try {
             if (file.createNewFile()) {
-                System.out.println("File created");
+                System.out.println("");
             } else {
-                System.out.println("File already Exists");
+                System.out.println("오류가 발생했습니다.");
             }
             System.out.println();
         } catch (IOException e) {
