@@ -49,10 +49,13 @@ public class User extends Account {
         ReservationFile uf = new ReservationFile(cr);
         File file = new File(uf.getPath());
         String path = uf.getPath();
-
+        String[] filenames = file.list();
+        if(filenames.length == 0) {
+            System.out.println("신청한 청소 내역이 없습니다.");
+            return;
+        }
         System.out.println("--------------------------------------------------");
         System.out.println("[" + this.getname() + "님의 예약 정보]");
-        String[] filenames = file.list();
         System.out.println("       예약 날짜       진행 상태 ");
         try {
             int i = 1;
@@ -69,6 +72,7 @@ public class User extends Account {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("--------------------------------------------------");
     }
 
     /*
