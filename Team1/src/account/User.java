@@ -60,7 +60,7 @@ public class User extends Account {
         }
         System.out.println("--------------------------------------------------");
         System.out.println("[" + this.getname() + "님의 예약 정보]");
-        System.out.println("      청소 완료 날짜       진행 상태 ");
+        System.out.println("       청소 완료 날짜   진행 상태             재요청 날짜");
         // try {
         int i = 1;
         for (CleaningReservation cr : allList) {
@@ -68,7 +68,7 @@ public class User extends Account {
                     + ": " + cr.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
                     + " | " + cr.getProcessStatus() + " | ");
             if ((recr = cr.getReCleaningReservation()) != null)
-                System.out.print("     " + recr.getSignUpTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                System.out.print(recr.getSignUpTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))  + " | ");
             System.out.print("\n");
         }
 

@@ -34,7 +34,10 @@ public class ReservationFile {
         try {
             if (file.createNewFile()) {
             } else {
+                file.delete();
+                file.createNewFile();
                 System.out.println("오류가 발생했습니다.");
+                //파일 갱신
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,7 +59,7 @@ public class ReservationFile {
 
             writer.write("processStatus:: " + rsrvInfo.getProcessStatus());
             writer.write("\r\n");
-            writer.write("signUpTime:: " + rsrvInfo.getSignUpTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+            writer.write("reservationDate:: " + rsrvInfo.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
             writer.write("\r\n");
             if (rsrvInfo.getFinishCleaningInfo() != null) {
                 writer.write("FinishCleaningInfo_finishCleanTime:: " + rsrvInfo.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
@@ -64,7 +67,7 @@ public class ReservationFile {
             }
             writer.write("ReCleaningReservation_signUpTime:: ");
             if (rsrvInfo.getReCleaningReservation() != null) {
-                writer.write(rsrvInfo.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                writer.write(rsrvInfo.getReCleaningReservation().getSignUpTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
                 writer.write("\r\n");
             }
 
@@ -86,31 +89,35 @@ public class ReservationFile {
         try {
             for (String filename : filenames) {
                 rsrvInfo = new CleaningReservation(usr);
+                FinishCleaningInfo ficlInfo = new FinishCleaningInfo(rsrvInfo);
+                ReCleaningReservation reclInfo = new ReCleaningReservation(rsrvInfo);
 
                 File rf = new File(path + File.separator + filename);
                 BufferedReader reader = new BufferedReader(new FileReader(rf));
-                String sLine;
+                                String sLine;
+
                 while ((sLine = reader.readLine()) != null) {
                     String[] lineSplit = sLine.split(":: ");
 
                     if (lineSplit[0].equals("processStatus")) {
                         rsrvInfo.setProcessStatus(lineSplit[1]);
                     }
-                    else if (lineSplit[0].equals("signUpTime")) {
+
+                    else if (lineSplit[0].equals("reservationDate")) {
                         if (lineSplit.length > 1) {
-                            rsrvInfo.setSignUpTime(LocalDateTime.parse(lineSplit[1], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                            rsrvInfo.setReservationDate(LocalDateTime.parse(lineSplit[1], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
                         }
                     }
                     else if (lineSplit[0].equals("FinishCleaningInfo_finishCleanTime")) {
                         if (lineSplit.length > 1) {
-                            FinishCleaningInfo ficlInfo = new FinishCleaningInfo(rsrvInfo);
+
                             rsrvInfo.setFinishCleaningInfo(ficlInfo);
                             ficlInfo.setFinishCleanTime(LocalDateTime.parse(lineSplit[1], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
                         }
                     }
                     else if (lineSplit[0].equals("ReCleaningReservation_signUpTime")) {
                         if (lineSplit.length > 1) {
-                            ReCleaningReservation reclInfo = new ReCleaningReservation(rsrvInfo);
+
                             rsrvInfo.setReCleaningReservation(reclInfo);
                             reclInfo.setSignUpTime(LocalDateTime.parse(lineSplit[1], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
                         }

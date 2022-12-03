@@ -161,7 +161,7 @@ public class CleaningReservation {
             this.price += 70000;
         } else if(cleaningSpace < 30) {
             this.price += 80000;
-        }else if(cleaningSpace < 40) {
+        }else if(cleaningSpace <= 40) {
             this.price += 90000;
         }
 
