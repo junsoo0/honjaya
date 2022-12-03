@@ -123,6 +123,7 @@ public class ReCleaningReservation {
             }
         }
 
+        cleaningReserv.setProcessStatus("청소 재요청 승인 대기");
         System.out.println("청소 재요청이 완료되었습니다.");
         // file explorer UI 등장
     }
