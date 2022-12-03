@@ -43,8 +43,6 @@ public class User extends Account {
         this.isBanned = isBanned;
     }
 
-
-
     public void showAllList() {
         //this method show all reservations of user.
         CleaningReservation cr = new CleaningReservation(this);
