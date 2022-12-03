@@ -32,67 +32,19 @@ public class UserUI {
         boolean check = cr.requestPayment();
 
         if(check) {
-                    /*
-                    File file2 = new File(path + "/" + cr.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+".txt");
-                    try{
-                        if(file2.createNewFile()){
-                            System.out.println("File created");
-                        }
-                        else{
-                            System.out.println("File already Exists");
-                        }
-                        System.out.println();
-                    }
-                    catch (IOException e){
-                        e.printStackTrace();
-                    }
-                    */
             File recv_file = uf.createFile();
-
             cr.completeCleaning();
-                    /*
-                    try {
-
-                        BufferedWriter writer = new BufferedWriter(new FileWriter(file2));
-
-                        writer.write(cr.getProcessStatus());
-                        writer.write("\r\n");
-                        writer.write(cr.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
-
-                        writer.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    */
             uf.writeFile(recv_file);
         }
         else {
             System.out.println("결제를 취소하셨습니다.");
         }
-
-        System.out.println("--------------------------------------------------");
     }
 
     public void userMenu3() {
         CleaningReservation cr = new CleaningReservation(user);
         ReCleaningReservation reCleaningReserv = new ReCleaningReservation(cr);
         reCleaningReserv.reRequestClean(user);
-
-        /*
-        CleaningReservation cr = new CleaningReservation(user);
-        UserFile uf = new UserFile(cr);
-        File file = new File(uf.getPath());
-        String path = uf.getPath();
-
-        String[] filenames = file.list();
-        if(file.list().length==0){
-            System.out.println("신청한 청소 내역이 없습니다.");
-        }
-        else {
-            ReCleaningReservation reCleaningReserv = new ReCleaningReservation(cr);
-            reCleaningReserv.reRequestClean(filenames, path);
-        }
-        */
     }
 
 
@@ -112,7 +64,7 @@ public class UserUI {
             System.out.println("3. 청소 재요청");
             System.out.println("4. 종료");
 
-            System.out.print("\n메뉴를 선택해주세요(숫자) : ");
+            System.out.print("\n메뉴를 선택해주세요.(숫자) : ");
             int input = in.nextInt();
 
             if(input == 1) {

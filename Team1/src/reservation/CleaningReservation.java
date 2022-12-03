@@ -148,7 +148,6 @@ public class CleaningReservation {
                 break;
             } else {
                 System.out.println("'Y' 또는 'N'을 입력해주세요.");
-                System.out.println();
             }
             check = 1;
         }
@@ -198,7 +197,6 @@ public class CleaningReservation {
     public Boolean requestPayment() {
         String answer;
         Scanner sc = new Scanner(System.in);
-        System.out.println("");
         System.out.println("--------------------------------------------------");
         System.out.println("              모든 예약이 접수되었습니다.");
         System.out.println("--------------------------------------------------");
@@ -212,7 +210,6 @@ public class CleaningReservation {
                 return false;
             } else {
                 System.out.println("'Y' 또는 'N'을 입력해주세요.");
-                System.out.println();
             }
         }
         //int[] creditInfo = user.getcreditInfo();
