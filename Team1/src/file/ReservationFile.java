@@ -30,7 +30,7 @@ public class ReservationFile {
         folder = new File(path);
         folder.mkdir();
 
-        File file = new File(path + "/" + rsrvInfo.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ".txt");
+        File file = new File(path + File.separator + rsrvInfo.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ".txt");
         try {
             if (file.createNewFile()) {
             } else {
@@ -50,7 +50,7 @@ public class ReservationFile {
 
             // File recv_file = this.createFile();
             this.createFile();
-            File file = new File(path + "/" + rsrvInfo.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ".txt");
+            File file = new File(path + File.separator + rsrvInfo.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ".txt");
             String path = this.getPath();
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
@@ -85,14 +85,12 @@ public class ReservationFile {
             for (String filename : filenames) {
                 rsrvInfo = new CleaningReservation(usr);
 
-                File rf = new File(path + "/" + filename);
+                File rf = new File(path + File.separator + filename);
                 BufferedReader reader = new BufferedReader(new FileReader(rf));
                 String sLine;
                 while ((sLine = reader.readLine()) != null) {
                     String[] lineSplit = sLine.split(":: ");
-                    System.out.printf("%s\n", lineSplit[0]);
-                    if (lineSplit.length > 1)
-                        System.out.printf("%s\n\n", lineSplit[1]);
+
                     if (lineSplit[0].equals("processStatus")) {
                         rsrvInfo.setProcessStatus(lineSplit[1]);
                     }
