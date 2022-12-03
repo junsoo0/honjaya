@@ -26,23 +26,28 @@ public class ReCleaningReservation {
     }
 
     public void reRequestClean(User user) {
-        CleaningReservation cleaningReserv = new CleaningReservation(user);
+        this.signUpTime = LocalDateTime.now();
         ReservationFile uf = new ReservationFile();
-        File file = new File(uf.getPath());
-        String path = uf.getPath();
+        ArrayList<CleaningReservation> allList = uf.readAllFile(user);
+        CleaningReservation cr;
 
-        String[] filenames = file.list();
-        if (file.list().length == 0) {
+        if (allList.size() == 0) {
             System.out.println("신청한 청소 내역이 없습니다.");
             return;
         }
 
-        Scanner sc = new Scanner(System.in);
+        for (int i = allList.size() - 1; i >= 0; i--) {
+            cr = allList.get(i);
+            if (!(cr.getProcessStatus().equals("청소 완료")) ||
+                    (cr.getFinishCleaningInfo().getFinishCleanTime().plusHours(12).compareTo(this.signUpTime) < 0))
+                allList.remove(cr);
+        }
+        /*
 
         String status = "";
         LocalDateTime finishCleanTime = LocalDateTime.now();
         ArrayList<LocalDateTime> cleanInfo = new ArrayList<LocalDateTime>();
-        this.signUpTime = LocalDateTime.now();
+
 
         FinishCleaningInfo cleaningInfo = new FinishCleaningInfo(cleaningReservation);
 
@@ -66,19 +71,23 @@ public class ReCleaningReservation {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
-        if (cleanInfo.size() == 0) {
+        */
+        if (allList.size() == 0) {
             System.out.println("재요청을 할 수 있는 청소 내역이 없습니다.");
             return;
         }
 
+        Scanner sc = new Scanner(System.in);
+
         System.out.println("--------------------------------------------------");
         System.out.println("[재요청 가능 날짜]");
-        System.out.println("       예약 날짜       진행 상태 ");
-        for (int j = 0; j < cleanInfo.size(); j++) {
-            System.out.println((j + 1) + ": " +
-                    cleanInfo.get(j).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + " | " + status + " | ");
+        System.out.println("    청소 완료 날짜       진행 상태 ");
+        for (int i = 0; i <= allList.size() - 1; i++) {
+            cr = allList.get(i);
+            System.out.println((i + 1) + ": " +
+                    cr.getFinishCleaningInfo().getFinishCleanTime().format(
+                            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + " | "
+                    + cr.getProcessStatus() + " | ");
         }
         System.out.println("--------------------------------------------------");
 
@@ -87,21 +96,22 @@ public class ReCleaningReservation {
             int tempDate = sc.nextInt();
             sc.nextLine();
 
-            if (tempDate <= 0 || tempDate > cleanInfo.size()) {
+            if (tempDate <= 0 || tempDate > allList.size()) {
                 System.out.println("목록에 없는 번호를 입력하셨습니다.");
             } else {
-                finishCleanTime = cleanInfo.get(tempDate - 1);
+                cr = allList.get(tempDate - 1);
                 break;
             }
         }
 
-        cleaningReserv.setProcessStatus("청소 완료");
-        cleaningReserv.setFinishCleaningInfo(cleaningInfo);
-        cleaningInfo.setFinishCleanTime(finishCleanTime);
+        /*
+        cr.setFinishCleaningInfo(cleaningInfo);
+        cr.setFinishCleanTime(finishCleanTime);
         cleaningReservation = cleaningReserv;
 
         FinishCleaningInfo finishCleaningInfo = cleaningReservation.getFinishCleaningInfo();
         finishCleanTime = finishCleaningInfo.getFinishCleanTime();
+        */
 
         System.out.print("재요청 사유를 입력해주세요. : ");
         reRequestReason = sc.nextLine();
@@ -127,7 +137,10 @@ public class ReCleaningReservation {
             }
         }
 
-        cleaningReserv.setProcessStatus("청소 재요청 승인 대기");
+        cr.setProcessStatus("청소 재요청 승인 대기");
+
+        ReservationFile rf = new ReservationFile();
+        rf.writeFile(cr);
         System.out.println("청소 재요청이 완료되었습니다.");
 
     }

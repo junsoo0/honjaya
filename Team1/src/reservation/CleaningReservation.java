@@ -214,7 +214,7 @@ public class CleaningReservation {
                 System.out.println("'Y' 또는 'N'을 입력해주세요.");
             }
         }
-        //int[] creditInfo = user.getcreditInfo();
+        int[] creditInfo = user.getcreditInfo();
         int allPrice = this.sumPrice();
 
         System.out.println("총 금액 : " + allPrice);

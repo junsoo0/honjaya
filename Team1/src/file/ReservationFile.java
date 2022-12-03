@@ -56,6 +56,8 @@ public class ReservationFile {
 
             writer.write("processStatus:: " + rsrvInfo.getProcessStatus());
             writer.write("\r\n");
+            writer.write("signUpTime:: " + rsrvInfo.getSignUpTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+            writer.write("\r\n");
             if (rsrvInfo.getFinishCleaningInfo() != null) {
                 writer.write("FinishCleaningInfo_finishCleanTime:: " + rsrvInfo.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
                 writer.write("\r\n");
@@ -93,6 +95,11 @@ public class ReservationFile {
 
                     if (lineSplit[0].equals("processStatus")) {
                         rsrvInfo.setProcessStatus(lineSplit[1]);
+                    }
+                    else if (lineSplit[0].equals("signUpTime")) {
+                        if (lineSplit.length > 1) {
+                            rsrvInfo.setSignUpTime(LocalDateTime.parse(lineSplit[1], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                        }
                     }
                     else if (lineSplit[0].equals("FinishCleaningInfo_finishCleanTime")) {
                         if (lineSplit.length > 1) {

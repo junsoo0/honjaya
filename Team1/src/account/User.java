@@ -54,30 +54,16 @@ public class User extends Account {
         ArrayList<CleaningReservation> allList = uf.readAllFile(this);
         ReCleaningReservation recr;
 
-        /*
-        CleaningReservation cr = new CleaningReservation(this);
-        //ReservationFile uf = new ReservationFile(cr);
-        File file = new File(uf.getPath());
-        String path = uf.getPath();
-        String[] filenames = file.list();
-        */
-
         if(allList.size() == 0) {
             System.out.println("신청한 청소 내역이 없습니다.");
             return;
         }
         System.out.println("--------------------------------------------------");
         System.out.println("[" + this.getname() + "님의 예약 정보]");
-        System.out.println("       예약 날짜       진행 상태 ");
+        System.out.println("      청소 완료 날짜       진행 상태 ");
         // try {
         int i = 1;
         for (CleaningReservation cr : allList) {
-            /*
-            File rf = new File(path + "/" + filename);
-            BufferedReader reader = new BufferedReader(new FileReader(rf));
-            String sLine;
-            System.out.print(i++ + ": ");
-                             */
             System.out.print(i++
                     + ": " + cr.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
                     + " | " + cr.getProcessStatus() + " | ");
@@ -85,10 +71,7 @@ public class User extends Account {
                 System.out.print("     " + recr.getSignUpTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
             System.out.print("\n");
         }
-            /*
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }*/
+
         System.out.println("--------------------------------------------------");
     }
 
