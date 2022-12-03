@@ -22,9 +22,11 @@ public class UserUI {
 
     public void userMenu2() {
         CleaningReservation cr = new CleaningReservation(user);
+
         ReservationFile uf = new ReservationFile(cr);
         File file = new File(uf.getPath());
         String path = uf.getPath();
+
 
         System.out.println("--------------------------------------------------");
         cr.requestClean();

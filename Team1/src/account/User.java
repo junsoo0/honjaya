@@ -52,7 +52,7 @@ public class User extends Account {
         File file = new File(uf.getPath());
         String path = uf.getPath();
 
-        System.out.println("--------------------------------------------------");
+
         System.out.println("[" + this.getname() + "님의 예약 정보]");
         String[] filenames = file.list();
         System.out.println("       예약 날짜       진행 상태 ");
