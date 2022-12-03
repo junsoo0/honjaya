@@ -44,9 +44,9 @@ public class ReservationFile {
 
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
-            writer.write(rsrvInfo.getProcessStatus());
-            writer.write("\r\n");
             writer.write(rsrvInfo.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+            writer.write("\r\n");
+            writer.write(rsrvInfo.getProcessStatus());
 
             writer.close();
         } catch (IOException e) {
