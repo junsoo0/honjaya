@@ -76,7 +76,7 @@ public class ReCleaningReservation {
         System.out.println("[재요청 가능 날짜]");
         System.out.println("       예약 날짜       진행 상태 ");
         for (int j = 0; j < cleanInfo.size(); j++) {
-            System.out.println((j + 1) + ". " +
+            System.out.println((j + 1) + ": " +
                     cleanInfo.get(j).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + " | " + status + " | ");
         }
         System.out.println("--------------------------------------------------");
