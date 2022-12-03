@@ -1,4 +1,4 @@
-package ui;
+package HCILayer;
 
 import file.ReservationFile;
 import reservation.CleaningReservation;
