@@ -132,8 +132,12 @@ public class CleaningReservation {
         this.additionalOption.requestAdditionalOption();
 
         // 밀키트 주문 과정
+        int check = 0;
         while(true){
-            System.out.print("밀키트를 주문하시겠습니까?(Y/N) : ");
+            if(check == 0)
+                System.out.print("밀키트를 주문하시겠습니까?(Y/N) : ");
+            else
+                System.out.print("밀키트를 추가 주문하시겠습니까?(Y/N) : ");
             String answer = in.next();
             if(answer.equals("Y")) {
                 Mealkit tempMealkit = new Mealkit(this);
@@ -141,12 +145,12 @@ public class CleaningReservation {
                 this.mealkit.add(tempMealkit);
             }
             else if(answer.equals("N")) {
-                System.out.println("밀키트 주문을 종료합니다.");
                 break;
             } else {
                 System.out.println("'Y' 또는 'N'을 입력해주세요.");
                 System.out.println();
             }
+            check = 1;
         }
         //진행 상황
         this.processStatus      = "예약 대기";
