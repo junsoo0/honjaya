@@ -198,7 +198,10 @@ public class CleaningReservation {
     public Boolean requestPayment() {
         String answer;
         Scanner sc = new Scanner(System.in);
-
+        System.out.println("");
+        System.out.println("--------------------------------------------------");
+        System.out.println("              모든 예약이 접수되었습니다.");
+        System.out.println("--------------------------------------------------");
 
         while(true) {
             System.out.print("결제를 하시겠습니까?(Y/N) : ");
