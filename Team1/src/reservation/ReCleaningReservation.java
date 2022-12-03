@@ -89,7 +89,6 @@ public class ReCleaningReservation {
 
             if (tempDate <= 0 || tempDate > cleanInfo.size()) {
                 System.out.println("목록에 없는 번호를 입력하셨습니다.");
-                System.out.println();
             } else {
                 finishCleanTime = cleanInfo.get(tempDate - 1);
                 break;
