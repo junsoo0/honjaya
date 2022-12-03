@@ -8,6 +8,12 @@ public class AdditionalOption {
     private String additionalRequirement;
     private int additionalPrice;
 
+    private CleaningReservation cleaningReservation;
+
+    public AdditionalOption(CleaningReservation cleaningReservation) {
+        this.cleaningReservation = cleaningReservation;
+    }
+
     public void requestAdditionalOption() {
         Scanner sc = new Scanner(System.in);
         String answer;

@@ -23,10 +23,7 @@ public class UserUI {
     public void userMenu2() {
         CleaningReservation cr = new CleaningReservation(user);
 
-        ReservationFile uf = new ReservationFile(cr);
-        File file = new File(uf.getPath());
-        String path = uf.getPath();
-
+        ReservationFile uf = new ReservationFile();
 
         System.out.println("--------------------------------------------------");
         cr.requestClean();
@@ -34,39 +31,43 @@ public class UserUI {
         boolean check = cr.requestPayment();
 
         if(check) {
-                    /*
-                    File file2 = new File(path + "/" + cr.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+".txt");
-                    try{
-                        if(file2.createNewFile()){
-                            System.out.println("File created");
-                        }
-                        else{
-                            System.out.println("File already Exists");
-                        }
-                        System.out.println();
-                    }
-                    catch (IOException e){
-                        e.printStackTrace();
-                    }
-                    */
-            File recv_file = uf.createFile();
+            uf.writeFile(cr);
+            //File recv_file = uf.createFile(cr);
+            //File file = new File(uf.getPath());
+            //String path = uf.getPath();
+
+            /*
+            File file2 = new File(path + "/" + cr.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+".txt");
+            try{
+                if(file2.createNewFile()){
+                    System.out.println("File created");
+                }
+                else{
+                    System.out.println("File already Exists");
+                }
+                System.out.println();
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+            */
 
             cr.completeCleaning();
-                    /*
-                    try {
+            /*
+            try {
 
-                        BufferedWriter writer = new BufferedWriter(new FileWriter(file2));
+                BufferedWriter writer = new BufferedWriter(new FileWriter(file2));
 
-                        writer.write(cr.getProcessStatus());
-                        writer.write("\r\n");
-                        writer.write(cr.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                writer.write(cr.getProcessStatus());
+                writer.write("\r\n");
+                writer.write(cr.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
 
-                        writer.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    */
-            uf.writeFile(recv_file);
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            */
+            uf.writeFile(cr);
         }
         else {
             System.out.println("결제를 취소하셨습니다.");

@@ -28,7 +28,7 @@ public class CleaningReservation {
     private User                    user ;
     private Cleaner                 cleaner;
     private Vector<Mealkit>         mealkit = new Vector<Mealkit>(); // 여러개여서 수정!!!>
-    private FinishCleaningInfo      finishCleaningInfo = new FinishCleaningInfo();
+    private FinishCleaningInfo      finishCleaningInfo;
     private AdditionalOption        additionalOption;
     private ReCleaningReservation   reCleaningReservation;
     private Review                  review;
@@ -128,7 +128,7 @@ public class CleaningReservation {
         this.location.concat(in.nextLine());
 
         //추가 옵션 선택 과정
-        this.additionalOption = new AdditionalOption();
+        this.additionalOption = new AdditionalOption(this);
         this.additionalOption.requestAdditionalOption();
 
         // 밀키트 주문 과정
@@ -182,6 +182,8 @@ public class CleaningReservation {
             Mealkit temp = it.next();
             sum += temp.getMealkitPrice();
         }
+
+        this.processStatus      = "결제 대기";
 
         return sum;
     }
@@ -239,6 +241,7 @@ public class CleaningReservation {
     }
 
     public void completeCleaning() {
+        finishCleaningInfo = new FinishCleaningInfo(this);
         LocalDateTime tempFinsihCleanTime = this.reservationDate;
         this.finishCleaningInfo.setFinishCleanTime(tempFinsihCleanTime.plusHours(2));
         System.out.println("청소 완료 했습니다.");
@@ -335,5 +338,9 @@ public class CleaningReservation {
 
     public User getUser() {
         return user;
+    }
+
+    public ReCleaningReservation getReCleaningReservation() {
+        return this.reCleaningReservation;
     }
 }

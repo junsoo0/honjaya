@@ -1,29 +1,35 @@
 package file;
 
 import account.User;
-import reservation.CleaningReservation;
+import reservation.*;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Vector;
 
 public class ReservationFile {
     private CleaningReservation rsrvInfo;
+
+    private ArrayList<CleaningReservation> rsrvAllInfo;
     private User user;
     private String path;
     private File folder;
 
-    public ReservationFile(CleaningReservation rsrvInfo) {
-        this.rsrvInfo = rsrvInfo;
-        this.user = rsrvInfo.getUser();
-        path = System.getProperty("user.dir") + File.separator + user.getname();
-        folder = new File(path);
-        folder.mkdir();
+    public ReservationFile() {
     }
 
     public File createFile() {
+        path = System.getProperty("user.dir") + File.separator + user.getname();
+        folder = new File(path);
+        folder.mkdir();
+
         File file = new File(path + "/" + rsrvInfo.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ".txt");
         try {
             if (file.createNewFile()) {
@@ -39,20 +45,74 @@ public class ReservationFile {
         return file;
     }
 
-    public void writeFile(File file) {
+    public void writeFile(CleaningReservation cr) {
         try {
+            this.rsrvInfo = cr;
+            this.user = cr.getUser();
 
+            // File recv_file = this.createFile();
+            this.createFile();
+            File file = new File(path + "/" + rsrvInfo.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ".txt");
+            String path = this.getPath();
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
-            writer.write(rsrvInfo.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+            writer.write("processStatus:: " + rsrvInfo.getProcessStatus());
             writer.write("\r\n");
-            writer.write(rsrvInfo.getProcessStatus());
+            if (rsrvInfo.getFinishCleaningInfo() != null) {
+                writer.write("FinishCleaningInfo_finishCleanTime:: " + rsrvInfo.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                writer.write("\r\n");
+            }
+            writer.write("ReCleaningReservation_signUpTime:: ");
+            if (rsrvInfo.getReCleaningReservation() != null) {
+                writer.write(rsrvInfo.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                writer.write("\r\n");
+            }
+
 
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public ArrayList<CleaningReservation> readAllFile(User usr) {
+        this.user = usr;
+        File file = new File(System.getProperty("user.dir") + File.separator + user.getname());
+        String[] filenames = file.list();
+
+        rsrvAllInfo = new ArrayList<CleaningReservation>();
+
+        try {
+            for (String filename : filenames) {
+                rsrvInfo = new CleaningReservation(usr);
+
+                File rf = new File(path + "/" + filename);
+                BufferedReader reader = new BufferedReader(new FileReader(rf));
+                String sLine;
+                while ((sLine = reader.readLine()) != null) {
+                    String[] lineSplit = sLine.split(":: ");
+                    if (lineSplit[0].equals("processStatus")) {
+                        rsrvInfo.setProcessStatus(lineSplit[1]);
+                    }
+                    else if (lineSplit[0].equals("FinishCleaningInfo_finishCleanTime")) {
+                        FinishCleaningInfo ficlInfo = new FinishCleaningInfo(rsrvInfo);
+                        ficlInfo.setFinishCleanTime(LocalDateTime.parse(lineSplit[1], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                    }
+                    else if (lineSplit[0].equals("ReCleaningReservation_signUpTime")) {
+                        ReCleaningReservation reclInfo = new ReCleaningReservation(rsrvInfo);
+                        reclInfo.setSignUpTime(LocalDateTime.parse(lineSplit[1], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                    }
+                }
+                rsrvAllInfo.add(rsrvInfo);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return rsrvAllInfo;
+    }
+
+    //  public CleaningReservation readFile() {}
 
     public File getFolder() {
         return folder;

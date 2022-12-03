@@ -7,6 +7,12 @@ public class FinishCleaningInfo {
     private LocalDateTime finishCleanTime;
     private String finishPhoto;
 
+    private CleaningReservation cleaningReservation;
+
+    public FinishCleaningInfo(CleaningReservation cleaningReservation) {
+        this.cleaningReservation = cleaningReservation;
+    }
+
     public void finishClean() {
         Scanner sc = new Scanner(System.in);
         int year, month, day, hour, minute;

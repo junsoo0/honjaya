@@ -27,7 +27,7 @@ public class ReCleaningReservation {
 
     public void reRequestClean(User user) {
         CleaningReservation cleaningReserv = new CleaningReservation(user);
-        ReservationFile uf = new ReservationFile(cleaningReserv);
+        ReservationFile uf = new ReservationFile();
         File file = new File(uf.getPath());
         String path = uf.getPath();
 
@@ -44,7 +44,7 @@ public class ReCleaningReservation {
         ArrayList<LocalDateTime> cleanInfo = new ArrayList<LocalDateTime>();
         this.signUpTime = LocalDateTime.now();
 
-        FinishCleaningInfo cleaningInfo = new FinishCleaningInfo();
+        FinishCleaningInfo cleaningInfo = new FinishCleaningInfo(cleaningReservation);
 
         //String[] filenames = file.list();
         //파일 불러서 status , finishcleantime string으로 받았다면, for문으로 받았을 때
@@ -125,7 +125,7 @@ public class ReCleaningReservation {
 
         cleaningReserv.setProcessStatus("청소 재요청 승인 대기");
         System.out.println("청소 재요청이 완료되었습니다.");
-        // file explorer UI 등장
+
     }
 
     public void approveReRequest() {

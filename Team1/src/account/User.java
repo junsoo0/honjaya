@@ -3,10 +3,7 @@ package account;
 import file.ReservationFile;
 import reservation.CleaningReservation;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.ArrayList;
 
 public class User extends Account {
     private String address;
@@ -47,15 +44,19 @@ public class User extends Account {
 
     public void showAllList() {
         //this method show all reservations of user.
-        CleaningReservation cr = new CleaningReservation(this);
-        ReservationFile uf = new ReservationFile(cr);
-        File file = new File(uf.getPath());
-        String path = uf.getPath();
-
 
         System.out.println("[" + this.getname() + "님의 예약 정보]");
-        String[] filenames = file.list();
         System.out.println("       예약 날짜       진행 상태 ");
+        ArrayList<CleaningReservation> allList = new ArrayList<CleaningReservation>();
+        ReservationFile uf = new ReservationFile();
+
+        allList = uf.readAllFile(this);
+
+        /*
+        File file = new File(uf.getPath());
+        String path = uf.getPath();
+        String[] filenames = file.list();
+
         try {
             int i = 1;
             for (String filename : filenames) {
@@ -71,6 +72,7 @@ public class User extends Account {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        */
     }
 
     /*
