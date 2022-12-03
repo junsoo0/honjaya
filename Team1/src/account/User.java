@@ -80,7 +80,7 @@ public class User extends Account {
                              */
             System.out.print(i++
                     + ": " + cr.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
-                    + "     " + cr.getProcessStatus());
+                    + " | " + cr.getProcessStatus() + " | ");
             if ((recr = cr.getReCleaningReservation()) != null)
                 System.out.print("     " + recr.getSignUpTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
             System.out.print("\n");
