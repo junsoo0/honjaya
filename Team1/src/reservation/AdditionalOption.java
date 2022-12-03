@@ -31,7 +31,6 @@ public class AdditionalOption {
                 break;
             } else {
                 System.out.println("'Y' 또는 'N'을 입력해주세요.");
-                System.out.println();
             }
         }
 
@@ -46,7 +45,6 @@ public class AdditionalOption {
                 break;
             } else {
                 System.out.println("'Y' 또는 'N'을 입력해주세요.");
-                System.out.println();
             }
         }
 

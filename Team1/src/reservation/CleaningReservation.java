@@ -55,7 +55,7 @@ public class CleaningReservation {
 
         // 청소 면적 선택(예외 구현 완료)
         while(true) {
-            System.out.print("청소 면적을 선택해 주세요.(1~40평 사이값을 입력해 주세요.) : ");
+            System.out.print("청소 면적을 선택해 주세요.(숫자로 1~40평 사이값을 입력해 주세요.) : ");
             this.cleaningSpace = in.nextInt();
             if(cleaningSpace > 40){
                 System.out.println(cleaningSpace + "평으로 잘못 입력 했습니다. 다시 입력해 주세요.");
@@ -70,8 +70,8 @@ public class CleaningReservation {
 
         // 예약 기간 선택(예외 구현 완료)
         while(true) {
-            System.out.println("예약 기간을 선택해 주세요(yyyy-MM-dd HH:mm).");
-            System.out.println("한자리 숫자인 경우 앞에 0을 붙이세요(ex, 2022-06-06 06:00)");
+            System.out.println("예약 기간을 선택해 주세요.(yyyy-MM-dd HH:mm)");
+            System.out.println("한자리 숫자인 경우 앞에 0을 붙여주세요.(ex, 2022-06-06 06:00)");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             System.out.print("예약 기간 입력 : ");
             String tempDate = in.nextLine();
@@ -98,21 +98,21 @@ public class CleaningReservation {
         // 예약 장소 선택(예외 구현 완료)
 
         while(true){
-            System.out.print("예약 지역을 선택해 주세요.(0.대구, 1.부산, 2.대전, 3.서울, 4.광주 ) : ");
+            System.out.print("예약 지역을 선택해 주세요.(1.대구, 2.부산, 3.대전, 4.서울, 5.광주) : ");
             switch(in.nextInt()) {
-                case 0:
+                case 1:
                     this.location = "대구 ";
                     break;
-                case 1:
+                case 2:
                     this.location = "부산 ";
                     break;
-                case 2:
+                case 3:
                     this.location = "대전 ";
                     break;
-                case 3:
+                case 4:
                     this.location = "서울 ";
                     break;
-                case 4:
+                case 5:
                     this.location = "광주 ";
                     break;
                 default:
@@ -124,7 +124,7 @@ public class CleaningReservation {
         }
         in.nextLine();
 
-        System.out.print("예약 주소을 선택해 주세요. : ");
+        System.out.print("예약 주소를 선택해 주세요. : ");
         this.location.concat(in.nextLine());
 
         //추가 옵션 선택 과정
@@ -148,7 +148,6 @@ public class CleaningReservation {
                 break;
             } else {
                 System.out.println("'Y' 또는 'N'을 입력해주세요.");
-                System.out.println();
             }
             check = 1;
         }
@@ -200,7 +199,6 @@ public class CleaningReservation {
     public Boolean requestPayment() {
         String answer;
         Scanner sc = new Scanner(System.in);
-        System.out.println("");
         System.out.println("--------------------------------------------------");
         System.out.println("              모든 예약이 접수되었습니다.");
         System.out.println("--------------------------------------------------");
@@ -214,7 +212,6 @@ public class CleaningReservation {
                 return false;
             } else {
                 System.out.println("'Y' 또는 'N'을 입력해주세요.");
-                System.out.println();
             }
         }
         //int[] creditInfo = user.getcreditInfo();
