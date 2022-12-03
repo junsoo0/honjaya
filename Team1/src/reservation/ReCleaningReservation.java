@@ -54,10 +54,10 @@ public class ReCleaningReservation {
                 BufferedReader reader = new BufferedReader(new FileReader(rf));
                 String sLine = null;
                 if ((sLine = reader.readLine()) != null) {
-                    status = sLine;
+                    finishCleanTime = LocalDateTime.parse(sLine, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
                 }
                 if ((sLine = reader.readLine()) != null) {
-                    finishCleanTime = LocalDateTime.parse(sLine, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+                    status = sLine;
                 }
                 if (status.equals("청소 완료") && finishCleanTime.plusHours(12).compareTo(this.signUpTime) > 0)
                     cleanInfo.add(finishCleanTime);
@@ -72,21 +72,25 @@ public class ReCleaningReservation {
             return;
         }
 
+        System.out.println("--------------------------------------------------");
+        System.out.println("[재요청 가능 날짜]");
+        System.out.println("       예약 날짜       진행 상태 ");
         for (int j = 0; j < cleanInfo.size(); j++) {
-            System.out.println(j + ". 완료시간 : " +
-                    cleanInfo.get(j).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + " | 청소상태 : " + status);
+            System.out.println((j + 1) + ": " +
+                    cleanInfo.get(j).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + " | " + status + " | ");
         }
+        System.out.println("--------------------------------------------------");
 
         while (true) {
             System.out.print("재청소 원하는 청소 번호 입력 : ");
             int tempDate = sc.nextInt();
             sc.nextLine();
 
-            if (tempDate < 0 || tempDate >= cleanInfo.size()) {
+            if (tempDate <= 0 || tempDate > cleanInfo.size()) {
                 System.out.println("목록에 없는 번호를 입력하셨습니다.");
                 System.out.println();
             } else {
-                finishCleanTime = cleanInfo.get(tempDate);
+                finishCleanTime = cleanInfo.get(tempDate - 1);
                 break;
             }
         }

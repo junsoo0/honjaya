@@ -1,5 +1,5 @@
 import account.*;
-import HCILayer.*;
+import UI.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -7,8 +7,5 @@ public class Main {
         User user = new User("usr1", "01034235643", "kynpook@knu.ac.kr", "1234!!", "경북대 북문", tempCreditInfo,false);
         UserUI userUI = new UserUI(user);
         userUI.userMainUI();
-
-
     }
-
 }

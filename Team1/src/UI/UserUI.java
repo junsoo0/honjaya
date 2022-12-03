@@ -1,4 +1,4 @@
-package HCILayer;
+package UI;
 
 import file.ReservationFile;
 import reservation.CleaningReservation;
@@ -17,7 +17,7 @@ public class UserUI {
 
     public void userMenu1() {
         user.showAllList();
-        System.out.println("--------------------------------------------------");
+
     }
 
     public void userMenu2() {
