@@ -36,8 +36,8 @@ public class ReservationFile {
             } else {
                 file.delete();
                 file.createNewFile();
-                System.out.println("오류가 발생했습니다.");
-                //파일 갱신
+                // System.out.println("오류가 발생했습니다.");
+                // 같은 날짜를 신청하면 덮어씌워집니다.
             }
         } catch (IOException e) {
             e.printStackTrace();
