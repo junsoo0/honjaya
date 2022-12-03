@@ -350,4 +350,8 @@ public class CleaningReservation {
     public ReCleaningReservation getReCleaningReservation() {
         return this.reCleaningReservation;
     }
+
+    public void setReCleaningReservation(ReCleaningReservation reCleaningReservation) {
+        this.reCleaningReservation = reCleaningReservation;
+    }
 }

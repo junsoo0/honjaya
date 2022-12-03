@@ -31,7 +31,7 @@ public class UserUI {
         boolean check = cr.requestPayment();
 
         if(check) {
-            uf.writeFile(cr);
+            //uf.writeFile(cr);
             //File recv_file = uf.createFile(cr);
             //File file = new File(uf.getPath());
             //String path = uf.getPath();

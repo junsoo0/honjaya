@@ -59,6 +59,7 @@ public class ReCleaningReservation {
                 if ((sLine = reader.readLine()) != null) {
                     status = sLine;
                 }
+
                 if (status.equals("청소 완료") && finishCleanTime.plusHours(12).compareTo(this.signUpTime) > 0)
                     cleanInfo.add(finishCleanTime);
             }

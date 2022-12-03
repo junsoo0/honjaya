@@ -1,12 +1,14 @@
 package account;
 
 import file.ReservationFile;
-import reservation.CleaningReservation;
+import reservation.*;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class User extends Account {
     private String address;
@@ -47,45 +49,58 @@ public class User extends Account {
 
     public void showAllList() {
         //this method show all reservations of user.
+
+        ReservationFile uf = new ReservationFile();
+        ArrayList<CleaningReservation> allList = uf.readAllFile(this);
+        ReCleaningReservation recr;
+
+        /*
         CleaningReservation cr = new CleaningReservation(this);
-        ReservationFile uf = new ReservationFile(cr);
+        //ReservationFile uf = new ReservationFile(cr);
         File file = new File(uf.getPath());
         String path = uf.getPath();
         String[] filenames = file.list();
-        if(filenames.length == 0) {
+        */
+
+        if(allList.size() == 0) {
             System.out.println("신청한 청소 내역이 없습니다.");
             return;
         }
         System.out.println("--------------------------------------------------");
         System.out.println("[" + this.getname() + "님의 예약 정보]");
         System.out.println("       예약 날짜       진행 상태 ");
-        try {
-            int i = 1;
-            for (String filename : filenames) {
-                File rf = new File(path + "/" + filename);
-                BufferedReader reader = new BufferedReader(new FileReader(rf));
-                String sLine;
-                System.out.print(i++ + ": ");
-                while( (sLine = reader.readLine()) != null ){
-                    System.out.print(sLine + " | ");
-                }
-                System.out.print("\n");
-            }
+        // try {
+        int i = 1;
+        for (CleaningReservation cr : allList) {
+            /*
+            File rf = new File(path + "/" + filename);
+            BufferedReader reader = new BufferedReader(new FileReader(rf));
+            String sLine;
+            System.out.print(i++ + ": ");
+                             */
+            System.out.print(i++
+                    + ": " + cr.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
+                    + "     " + cr.getProcessStatus());
+            if ((recr = cr.getReCleaningReservation()) != null)
+                System.out.print("     " + recr.getSignUpTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+            System.out.print("\n");
+        }
+            /*
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
+        }*/
         System.out.println("--------------------------------------------------");
     }
 
     /*
     public void editInfo() {
-        // this method is used to edit User's Information.
+         //this method is used to edit User's Information
     }
 
 
     public void banUserAccount() {
         // this method is used to ban User.
-        setisBanned(true);
+        setIsBanned(true);
     }
     */
 

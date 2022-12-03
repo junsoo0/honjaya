@@ -77,7 +77,8 @@ public class ReservationFile {
 
     public ArrayList<CleaningReservation> readAllFile(User usr) {
         this.user = usr;
-        File file = new File(System.getProperty("user.dir") + File.separator + user.getname());
+        this.path = System.getProperty("user.dir") + File.separator + user.getname();
+        File file = new File(path);
         String[] filenames = file.list();
 
         rsrvAllInfo = new ArrayList<CleaningReservation>();
@@ -91,16 +92,25 @@ public class ReservationFile {
                 String sLine;
                 while ((sLine = reader.readLine()) != null) {
                     String[] lineSplit = sLine.split(":: ");
+                    System.out.printf("%s\n", lineSplit[0]);
+                    if (lineSplit.length > 1)
+                        System.out.printf("%s\n\n", lineSplit[1]);
                     if (lineSplit[0].equals("processStatus")) {
                         rsrvInfo.setProcessStatus(lineSplit[1]);
                     }
                     else if (lineSplit[0].equals("FinishCleaningInfo_finishCleanTime")) {
-                        FinishCleaningInfo ficlInfo = new FinishCleaningInfo(rsrvInfo);
-                        ficlInfo.setFinishCleanTime(LocalDateTime.parse(lineSplit[1], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                        if (lineSplit.length > 1) {
+                            FinishCleaningInfo ficlInfo = new FinishCleaningInfo(rsrvInfo);
+                            rsrvInfo.setFinishCleaningInfo(ficlInfo);
+                            ficlInfo.setFinishCleanTime(LocalDateTime.parse(lineSplit[1], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                        }
                     }
                     else if (lineSplit[0].equals("ReCleaningReservation_signUpTime")) {
-                        ReCleaningReservation reclInfo = new ReCleaningReservation(rsrvInfo);
-                        reclInfo.setSignUpTime(LocalDateTime.parse(lineSplit[1], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                        if (lineSplit.length > 1) {
+                            ReCleaningReservation reclInfo = new ReCleaningReservation(rsrvInfo);
+                            rsrvInfo.setReCleaningReservation(reclInfo);
+                            reclInfo.setSignUpTime(LocalDateTime.parse(lineSplit[1], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                        }
                     }
                 }
                 rsrvAllInfo.add(rsrvInfo);
