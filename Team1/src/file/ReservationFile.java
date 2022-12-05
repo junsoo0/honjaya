@@ -78,6 +78,13 @@ public class ReservationFile {
         }
     }
 
+    public String[] readAllFileNames(User usr) {
+        this.user = usr;
+        this.path = System.getProperty("user.dir") + File.separator + user.getname();
+        File file = new File(path);
+        return file.list();
+    }
+
     public ArrayList<CleaningReservation> readAllFile(User usr) {
         this.user = usr;
         this.path = System.getProperty("user.dir") + File.separator + user.getname();

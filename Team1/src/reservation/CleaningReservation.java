@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.io.File;
 
 import account.User;
+import file.ReservationFile;
 import reservation.mealkit.Mealkit;
 import review.Review;
 
@@ -84,15 +85,14 @@ public class CleaningReservation {
                 continue;
             }
 
-            String path = System.getProperty("user.dir") + File.separator + user.getname();
-            File file = new File(path);
-            String[] filenames = file.list();
-
             if (reservationDate.isBefore(LocalDateTime.now())) {
                 System.out.println("현재 시간 보다 과거 예약일 입니다. 다시 입력해 주세요.");
                 System.out.println();
                 continue;
             }
+
+            ReservationFile rsrvFile = new ReservationFile();
+            String[] filenames = rsrvFile.readAllFileNames(user);
 
             boolean check = false;
             for (String filename: filenames) {
