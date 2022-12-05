@@ -99,14 +99,15 @@ public class CleaningReservation {
                 if (tempDate.substring(0, 10).equals(filename.substring(0, 10))) {
                     System.out.println("이미 예약된 시간입니다. 다시 입력해 주세요.");
                     System.out.println();
+                    check = true;
                     break;
                 }
-                else
-                    check = true;
             }
-
-            if(check)
+            if(check) {
+                continue;
+            } else {
                 break;
+            }
         }
 
 
