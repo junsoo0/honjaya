@@ -53,7 +53,7 @@ public class ReCleaningReservation {
 
         System.out.println("--------------------------------------------------");
         System.out.println("[재요청 가능 날짜]");
-        System.out.println("       청소 완료 날짜   진행 상태 ");
+        System.out.println("   청소 완료 날짜     진행 상태 ");
         for (int i = 0; i <= allList.size() - 1; i++) {
             cr = allList.get(i);
             System.out.println((i + 1) + ": " +
