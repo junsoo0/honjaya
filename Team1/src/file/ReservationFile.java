@@ -44,7 +44,6 @@ public class ReservationFile {
                 file.delete();
                 file.createNewFile();
                 // System.out.println("오류가 발생했습니다.");
-                // 같은 날짜를 신청하면 덮어씌워집니다.
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -59,7 +58,7 @@ public class ReservationFile {
             this.user = cr.getUser();
 
             // File recv_file = this.createFile();
-            // this.createFile();
+            this.createFile();
             File file = new File(path + File.separator + rsrvInfo.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ".txt");
             String path = this.getPath();
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
