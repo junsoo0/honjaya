@@ -63,7 +63,14 @@ public class ReCleaningReservation {
         System.out.println("--------------------------------------------------");
 
         while (true) {
-            System.out.print("재청소 원하는 청소 번호 입력 : ");
+            while (true) {
+                System.out.print("재청소 원하는 청소 번호 입력 : ");
+                if (sc.hasNextInt())
+                    break;
+                sc.next();
+                System.out.println("숫자를 입력해주세요.");
+                System.out.println();
+            }
             int tempDate = sc.nextInt();
             sc.nextLine();
 

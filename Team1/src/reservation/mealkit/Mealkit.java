@@ -71,10 +71,17 @@ public class Mealkit {
             setMealkitWeeks(1);
         else
             while (true) {
-                System.out.print("주차를 선택해주세요.(1 ~ 4) : ");
-
+                while (true) {
+                    System.out.print("주차를 선택해주세요.(1 ~ 4) : ");
+                    if (sc.hasNextInt())
+                        break;
+                    sc.next();
+                    System.out.println("숫자를 입력해주세요.");
+                    System.out.println();
+                }
                 int week = sc.nextInt();
                 sc.nextLine();
+
                 if (week >= 1 && week <= 4) {
                     setMealkitWeeks(week);
                     break;
@@ -104,7 +111,14 @@ public class Mealkit {
         }
 
         while(true){
-            System.out.print("개수를 입력해주세요(최대 7개까지 가능) : ");
+            while (true) {
+                System.out.print("개수를 입력해주세요(최대 7개까지 가능) : ");
+                if (sc.hasNextInt())
+                    break;
+                sc.next();
+                System.out.println("숫자를 입력해주세요.");
+                System.out.println();
+            }
             menuNumber = sc.nextInt();  //메뉴 개수
 
             if(menuNumber > 0 && menuNumber < 8) {

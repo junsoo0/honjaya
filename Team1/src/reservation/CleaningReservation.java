@@ -118,8 +118,17 @@ public class CleaningReservation {
         // 예약 장소 선택(예외 구현 완료)
 
         while(true){
-            System.out.print("예약 지역을 선택해 주세요.(1.대구, 2.부산, 3.대전, 4.서울, 5.광주) : ");
-            switch(in.nextInt()) {
+            while (true) {
+                System.out.print("예약 지역을 선택해 주세요.(1.대구, 2.부산, 3.대전, 4.서울, 5.광주) : ");
+                if (in.hasNextInt())
+                    break;
+                in.next();
+                System.out.println("숫자를 입력해주세요.");
+                System.out.println();
+            }
+            int city = in.nextInt();
+
+            switch(city) {
                 case 1:
                     this.location = "대구 ";
                     break;

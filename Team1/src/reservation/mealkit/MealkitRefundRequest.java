@@ -36,7 +36,14 @@ public class MealkitRefundRequest {
         //isRefundApproved
         Scanner scanner = new Scanner(System.in);
         int in;
-        System.out.println("환불 요청을 승인하시겠습니까? : 승인(1)  거절(2)입력");
+        while (true) {
+            System.out.println("환불 요청을 승인하시겠습니까? : 승인(1)  거절(2)입력");
+            if (scanner.hasNextInt())
+                break;
+            scanner.next();
+            System.out.println("숫자를 입력해주세요.");
+            System.out.println();
+        }
         in = scanner.nextInt();
         this.isRefundApproved = in == 1;
     }

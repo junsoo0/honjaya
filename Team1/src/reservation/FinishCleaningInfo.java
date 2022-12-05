@@ -20,16 +20,60 @@ public class FinishCleaningInfo {
         String finishPhoto;
 
         System.out.println("청소 완료 시간 입력");
-        System.out.print("연(year): ");
+        while (true) {
+            System.out.print("연(year): ");
+            if (sc.hasNextInt())
+                break;
+            sc.next();
+            System.out.println("숫자를 입력해주세요.");
+            System.out.println();
+        }
         year = sc.nextInt();
-        System.out.print("월(month): ");
+        sc.nextLine();
+
+        while (true) {
+            System.out.print("월(month): ");
+            if (sc.hasNextInt())
+                break;
+            sc.next();
+            System.out.println("숫자를 입력해주세요.");
+            System.out.println();
+        }
         month = sc.nextInt();
-        System.out.print("일(day): ");
+        sc.nextLine();
+
+        while (true) {
+            System.out.print("일(day): ");
+            if (sc.hasNextInt())
+                break;
+            sc.next();
+            System.out.println("숫자를 입력해주세요.");
+            System.out.println();
+        }
         day = sc.nextInt();
-        System.out.print("시(hour): ");
+        sc.nextLine();
+
+        while (true) {
+            System.out.print("시(hour): ");
+            if (sc.hasNextInt())
+                break;
+            sc.next();
+            System.out.println("숫자를 입력해주세요.");
+            System.out.println();
+        }
         hour = sc.nextInt();
-        System.out.print("분(minute): ");
+        sc.nextLine();
+
+        while (true) {
+            System.out.print("분(minute): ");
+            if (sc.hasNextInt())
+                break;
+            sc.next();
+            System.out.println("숫자를 입력해주세요.");
+            System.out.println();
+        }
         minute = sc.nextInt();
+        sc.nextLine();
 
         finishCleanTime = LocalDateTime.of(year, month, day, hour, minute);
         setFinishCleanTime(finishCleanTime);
