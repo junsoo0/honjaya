@@ -5,11 +5,10 @@ import reservation.CleaningReservation;
 import reservation.ReCleaningReservation;
 import account.User;
 
-import java.io.File;
 import java.util.Scanner;
 
 public class UserUI {
-    private User user;
+    private final User user;
 
     public UserUI(User user) {
         this.user = user;

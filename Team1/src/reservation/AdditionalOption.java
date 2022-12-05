@@ -8,7 +8,7 @@ public class AdditionalOption {
     private String additionalRequirement;
     private int additionalPrice;
 
-    private CleaningReservation cleaningReservation;
+    private final CleaningReservation cleaningReservation;
 
     public AdditionalOption(CleaningReservation cleaningReservation) {
         this.cleaningReservation = cleaningReservation;

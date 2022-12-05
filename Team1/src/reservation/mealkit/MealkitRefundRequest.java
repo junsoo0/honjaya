@@ -1,5 +1,4 @@
 package reservation.mealkit;
-import reservation.CleaningReservation;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 public class MealkitRefundRequest {
@@ -39,17 +38,12 @@ public class MealkitRefundRequest {
         int in;
         System.out.println("환불 요청을 승인하시겠습니까? : 승인(1)  거절(2)입력");
         in = scanner.nextInt();
-        if (in == 1) {
-            this.isRefundApproved = true;
-        }
-        else{
-            this.isRefundApproved = false;
-        }
+        this.isRefundApproved = in == 1;
     }
 
     //밀키트 함수 함수
     public void mealkitRefund(int mealkitNum, int mealkitPrice){
-        if (getIsRefundApproved() == true)
+        if (getIsRefundApproved())
         {
             System.out.println("환불성공..환불된 정보를 출력합니다.");
             System.out.println("환불된 밀키트 갯수 : "+mealkitNum+" 환불된 금액 : "+mealkitPrice);

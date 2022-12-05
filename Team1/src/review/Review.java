@@ -38,6 +38,5 @@ public class Review {
     }
 
     public void removeComment(Comment comment){
-        comment = null;
     }
 }

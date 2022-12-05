@@ -51,11 +51,11 @@ public class Mealkit {
 
     //밀키트 예약요청 함수
     public void requestMealkit(String processStatus) {
-        HashMap<String, String> menu = new HashMap<String, String>();
+        HashMap<String, String> menu = new HashMap<>();
         Scanner sc = new Scanner(System.in);
 
-        String menuName = "";
-        int menuNumber = 0;
+        String menuName;
+        int menuNumber;
         int cnt = 1;
 
         menu.put("미역국", "10000");

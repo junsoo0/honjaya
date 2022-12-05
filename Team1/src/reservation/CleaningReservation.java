@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Vector;
 import java.time.LocalDateTime;
-import java.io.File;
 
 import account.User;
 import file.ReservationFile;
@@ -28,7 +27,7 @@ public class CleaningReservation {
 
     private User                    user ;
     private Cleaner                 cleaner;
-    private Vector<Mealkit>         mealkit = new Vector<Mealkit>(); // 여러개여서 수정!!!>
+    private final Vector<Mealkit>         mealkit = new Vector<>(); // 여러개여서 수정!!!>
     private FinishCleaningInfo      finishCleaningInfo;
     private AdditionalOption        additionalOption;
     private ReCleaningReservation   reCleaningReservation;
@@ -103,9 +102,7 @@ public class CleaningReservation {
                     break;
                 }
             }
-            if(check) {
-                continue;
-            } else {
+            if(!check) {
                 break;
             }
         }
@@ -115,26 +112,17 @@ public class CleaningReservation {
 
         while(true){
             System.out.print("예약 지역을 선택해 주세요.(1.대구, 2.부산, 3.대전, 4.서울, 5.광주) : ");
-            switch(in.nextInt()) {
-                case 1:
-                    this.location = "대구 ";
-                    break;
-                case 2:
-                    this.location = "부산 ";
-                    break;
-                case 3:
-                    this.location = "대전 ";
-                    break;
-                case 4:
-                    this.location = "서울 ";
-                    break;
-                case 5:
-                    this.location = "광주 ";
-                    break;
-                default:
+            switch (in.nextInt()) {
+                case 1 -> this.location = "대구 ";
+                case 2 -> this.location = "부산 ";
+                case 3 -> this.location = "대전 ";
+                case 4 -> this.location = "서울 ";
+                case 5 -> this.location = "광주 ";
+                default -> {
                     System.out.println("잘못 선택하셨습니다. 다시 입력해 주세요.");
                     System.out.println();
                     continue;
+                }
             }
             break;
         }
