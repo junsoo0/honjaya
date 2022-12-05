@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.Scanner;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.time.LocalDateTime;
 
 import account.User;
@@ -27,7 +27,7 @@ public class CleaningReservation {
 
     private User                    user ;
     private Cleaner                 cleaner;
-    private final Vector<Mealkit>         mealkit = new Vector<>(); // 여러개여서 수정!!!>
+    private final ArrayList<Mealkit>         mealkit = new ArrayList<Mealkit>(); // 여러개여서 수정!!!>
     private FinishCleaningInfo      finishCleaningInfo;
     private AdditionalOption        additionalOption;
     private ReCleaningReservation   reCleaningReservation;
