@@ -103,10 +103,19 @@ public class Mealkit {
             }
         }
 
+        while(true){
+            System.out.print("개수를 입력해주세요.(최대 7개 까지 가능) : ");
+            menuNumber = sc.nextInt();  //메뉴 개수
+
+            if(menuNumber > 0 && menuNumber < 8) {
+                break;
+            } else {
+                System.out.println("입력한 개수는 "+menuNumber+ "으로 잘못 입력 되었습니다.");
+                System.out.println();
+            }
+        }
 
 
-        System.out.print("개수를 입력해주세요. : ");
-        menuNumber = sc.nextInt();  //메뉴 개수
         setMealkitNum(menuNumber); //메뉴 개수 저장
         setMealkitPrice(Integer.parseInt(menu.get(menuName)) * menuNumber); //메뉴 가격 저장
     }
