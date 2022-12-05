@@ -67,6 +67,10 @@ public class UserUI {
             System.out.println("4. 종료");
 
             System.out.print("\n메뉴를 선택해주세요.(숫자) : ");
+            while (!in.hasNextInt()) {
+                in.next();
+                System.out.print("숫자를 입력해주세요.");
+            }
             int input = in.nextInt();
 
             if(input == 1) {
