@@ -49,7 +49,6 @@ public class ReservationFile {
             this.user = cr.getUser();
             this.path = System.getProperty("user.dir") + File.separator + user.getname();
 
-            // File recv_file = this.createFile();
             this.createFile();
             File file = new File(path + File.separator + rsrvInfo.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ".txt");
             String path = this.getPath();
@@ -135,6 +134,15 @@ public class ReservationFile {
         }
 
         return rsrvAllInfo;
+    }
+
+    public void removeFile(CleaningReservation cr) {
+        this.rsrvInfo = cr;
+        this.user = cr.getUser();
+        this.path = System.getProperty("user.dir") + File.separator + user.getname();
+        File file = new File(path + File.separator + rsrvInfo.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ".txt");
+
+        file.delete();
     }
 
     //  public CleaningReservation readFile() {}

@@ -22,17 +22,13 @@ public class UserUI {
     public void userMenu2() {
         CleaningReservation cr = new CleaningReservation(user);
 
-        ReservationFile uf = new ReservationFile();
-
         System.out.println("--------------------------------------------------");
         cr.requestClean();
 
         boolean check = cr.requestPayment();
 
         if(check) {
-            // File recv_file = uf.createFile();
             cr.completeCleaning();
-            uf.writeFile(cr);
         }
         else {
             System.out.println("결제를 취소하셨습니다.");
@@ -47,7 +43,6 @@ public class UserUI {
 
 
     public void userMainUI() {
-        CleaningReservation cr = new CleaningReservation(user);
         Scanner in = new Scanner(System.in);
 
         while(true) {

@@ -203,6 +203,9 @@ public class CleaningReservation {
         //예약 시간
         this.signUpTime = LocalDateTime.now();
 
+        ReservationFile rsrvFile = new ReservationFile();
+        rsrvFile.writeFile(this);
+
         System.out.println("--------------------------------------------------");
         System.out.println("              모든 예약이 접수되었습니다.");
         System.out.println("--------------------------------------------------");
@@ -241,6 +244,8 @@ public class CleaningReservation {
             if (answer.equals("Y")) {
                 break;
             } else if (answer.equals("N")) {
+                ReservationFile rsrvFile = new ReservationFile();
+                rsrvFile.removeFile(this);
                 return false;
             } else {
                 System.out.println("'Y' 또는 'N'을 입력해주세요.");
@@ -264,8 +269,11 @@ public class CleaningReservation {
         }
 */
         System.out.println("결제 성공 했습니다.");
-
         this.processStatus = "결제 성공";
+
+        ReservationFile rsrvFile = new ReservationFile();
+        rsrvFile.writeFile(this);
+
         return true;
     }
 
@@ -283,6 +291,9 @@ public class CleaningReservation {
         this.finishCleaningInfo.setFinishCleanTime(tempFinsihCleanTime.plusHours(2));
         System.out.println("청소 완료 했습니다.");
         this.processStatus = "청소 완료";
+
+        ReservationFile rsrvFile = new ReservationFile();
+        rsrvFile.writeFile(this);
     }
 
     //날짜 형식 검사
