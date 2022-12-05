@@ -15,7 +15,7 @@ public class ReCleaningReservation {
     private Boolean isReRequestApproved;
     private LocalDateTime reRequestCleanDate;
 
-    private CleaningReservation cleaningReservation;
+    private final CleaningReservation cleaningReservation;
 
     public void selectReRequestCleanDate() {
 
@@ -42,36 +42,7 @@ public class ReCleaningReservation {
                     (cr.getFinishCleaningInfo().getFinishCleanTime().plusHours(12).compareTo(this.signUpTime) < 0))
                 allList.remove(cr);
         }
-        /*
 
-        String status = "";
-        LocalDateTime finishCleanTime = LocalDateTime.now();
-        ArrayList<LocalDateTime> cleanInfo = new ArrayList<LocalDateTime>();
-
-
-        FinishCleaningInfo cleaningInfo = new FinishCleaningInfo(cleaningReservation);
-
-        //String[] filenames = file.list();
-        //파일 불러서 status , finishcleantime string으로 받았다면, for문으로 받았을 때
-        try {
-            for (String filename : filenames) {
-                File rf = new File(path + "/" + filename);
-                BufferedReader reader = new BufferedReader(new FileReader(rf));
-                String sLine = null;
-                if ((sLine = reader.readLine()) != null) {
-                    finishCleanTime = LocalDateTime.parse(sLine, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-                }
-                if ((sLine = reader.readLine()) != null) {
-                    status = sLine;
-                }
-
-                if (status.equals("청소 완료") && finishCleanTime.plusHours(12).compareTo(this.signUpTime) > 0)
-                    cleanInfo.add(finishCleanTime);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        */
         if (allList.size() == 0) {
             System.out.println("재요청을 할 수 있는 청소 내역이 없습니다.");
             return;
@@ -104,15 +75,6 @@ public class ReCleaningReservation {
                 break;
             }
         }
-
-        /*
-        cr.setFinishCleaningInfo(cleaningInfo);
-        cr.setFinishCleanTime(finishCleanTime);
-        cleaningReservation = cleaningReserv;
-
-        FinishCleaningInfo finishCleaningInfo = cleaningReservation.getFinishCleaningInfo();
-        finishCleanTime = finishCleaningInfo.getFinishCleanTime();
-        */
 
         System.out.print("재요청 사유를 입력해주세요. : ");
         reRequestReason = sc.nextLine();
