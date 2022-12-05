@@ -3,10 +3,7 @@ package file;
 import account.User;
 import reservation.*;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.io.BufferedReader;
@@ -61,7 +58,7 @@ public class ReservationFile {
             this.createFile();
             File file = new File(path + File.separator + rsrvInfo.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ".txt");
             String path = this.getPath();
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
 
             writer.write("processStatus:: " + rsrvInfo.getProcessStatus());
             writer.write("\r\n");
@@ -106,8 +103,8 @@ public class ReservationFile {
                 ReCleaningReservation reclInfo = new ReCleaningReservation(rsrvInfo);
 
                 File rf = new File(path + File.separator + filename);
-                BufferedReader reader = new BufferedReader(new FileReader(rf));
-                                String sLine;
+                BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(rf), "UTF-8"));
+                String sLine;
 
                 while ((sLine = reader.readLine()) != null) {
                     String[] lineSplit = sLine.split(":: ");

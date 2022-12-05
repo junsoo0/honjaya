@@ -87,11 +87,12 @@ public class ReCleaningReservation {
         reRequestReason = sc.nextLine();
         setReRequestReason(reRequestReason);
 
+        /*
         while (true) {
             System.out.print("증거 사진을 첨부해주세요.(파일 경로 입력) : ");
             File src = new File(sc.nextLine());
-            // evidencePhoto = "이미지가 저장될 서버에서의 이미지 경로"
-            // File upload = new File(evidencePhoto);
+            evidencePhoto = "이미지가 저장될 서버에서의 이미지 경로";
+            File upload = new File(evidencePhoto);
 
             try {
                 FileInputStream fi = new FileInputStream(src);
@@ -104,12 +105,15 @@ public class ReCleaningReservation {
                         break;
                 }
                 fi.close();
-                // fo.close();
+                fo.close();
                 break;
                 } catch (IOException e) {
                     System.out.println("파일 복사 오류");
             }
         }
+        */ // 아래 두 줄은 임시 코드입니다.
+        System.out.print("증거 사진을 첨부해주세요.(파일 경로 입력) : ");
+        sc.nextLine();
 
         cr.setProcessStatus("청소 재요청 승인 대기");
 

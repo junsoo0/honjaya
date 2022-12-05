@@ -60,14 +60,14 @@ public class User extends Account {
         }
         System.out.println("--------------------------------------------------");
         System.out.println("[" + this.getname() + "님의 예약 정보]");
-        System.out.printf("%5s %20s | %15s | %23s\n", " ", "청소 완료 날짜", "진행 상태", "재요청 등록 날짜");
+        System.out.printf("%5s %-14s | %-20s | %-15s\n", " ", "청소 완료 날짜", "진행 상태", "재요청 등록 날짜");
         int i = 1;
         for (CleaningReservation cr : allList) {
-            System.out.printf("%4s: %20s | %15s | ", i++,
+            System.out.printf("%4s: %-20s | %-15s", i++,
                             cr.getFinishCleaningInfo().getFinishCleanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
                             cr.getProcessStatus());
             if ((recr = cr.getReCleaningReservation()) != null)
-                System.out.printf("%15s | ", recr.getSignUpTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                System.out.printf(" | %-15s", recr.getSignUpTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
             System.out.print("\n");
         }
 
