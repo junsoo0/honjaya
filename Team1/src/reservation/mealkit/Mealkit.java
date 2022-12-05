@@ -66,7 +66,6 @@ public class Mealkit {
         menu.put("야채볶음밥", "10000");
 
         System.out.println("=============MealKit Request=============");
-        System.out.println(cleaningReservation.getReserveType());
         if (cleaningReservation.getReserveType().equals("1회"))
             setMealkitWeeks(1);
         else
@@ -92,9 +91,7 @@ public class Mealkit {
             }
         System.out.println("=========================================");
         for (String j : menu.keySet()) {
-            System.out.print(cnt + ". " + String.format("%-10s",j) + String.format("%7s",menu.get(j)+"원"));
-            System.out.println();
-            cnt++;
+            System.out.printf("%2d. %-15s %10s원\n", cnt++, j, menu.get(j));
         }
         System.out.println("=========================================");
 
