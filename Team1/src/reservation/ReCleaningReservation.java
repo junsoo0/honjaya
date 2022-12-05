@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 
 public class ReCleaningReservation {
     private LocalDateTime signUpTime;
@@ -90,13 +91,13 @@ public class ReCleaningReservation {
         /*
         while (true) {
             System.out.print("증거 사진을 첨부해주세요.(파일 경로 입력) : ");
-            File src = new File(sc.nextLine());
+            File src = new File(sc.nextLine().replaceAll("/", Matcher.quoteReplacement(File.separator));;
             evidencePhoto = "이미지가 저장될 서버에서의 이미지 경로";
             File upload = new File(evidencePhoto);
 
             try {
                 FileInputStream fi = new FileInputStream(src);
-               // FileOutputStream fo = new FileOutputStream(src);
+                FileOutputStream fo = new FileOutputStream(src);
                 byte[] buf = new byte[1024 * 10];
                 while (true) {
                     int n = fi.read(buf);
@@ -111,7 +112,8 @@ public class ReCleaningReservation {
                     System.out.println("파일 복사 오류");
             }
         }
-        */ // 아래 두 줄은 임시 코드입니다.
+        */
+        // 아래 두 줄은 임시 코드입니다.
         System.out.print("증거 사진을 첨부해주세요.(파일 경로 입력) : ");
         sc.nextLine();
 
