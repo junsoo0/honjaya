@@ -112,17 +112,26 @@ public class CleaningReservation {
 
         while(true){
             System.out.print("예약 지역을 선택해 주세요.(1.대구, 2.부산, 3.대전, 4.서울, 5.광주) : ");
-            switch (in.nextInt()) {
-                case 1 -> this.location = "대구 ";
-                case 2 -> this.location = "부산 ";
-                case 3 -> this.location = "대전 ";
-                case 4 -> this.location = "서울 ";
-                case 5 -> this.location = "광주 ";
-                default -> {
+            switch(in.nextInt()) {
+                case 1:
+                    this.location = "대구 ";
+                    break;
+                case 2:
+                    this.location = "부산 ";
+                    break;
+                case 3:
+                    this.location = "대전 ";
+                    break;
+                case 4:
+                    this.location = "서울 ";
+                    break;
+                case 5:
+                    this.location = "광주 ";
+                    break;
+                default:
                     System.out.println("잘못 선택하셨습니다. 다시 입력해 주세요.");
                     System.out.println();
                     continue;
-                }
             }
             break;
         }
