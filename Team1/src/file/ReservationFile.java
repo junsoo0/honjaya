@@ -47,6 +47,7 @@ public class ReservationFile {
         try {
             this.rsrvInfo = cr;
             this.user = cr.getUser();
+            this.path = System.getProperty("user.dir") + File.separator + user.getname();
 
             // File recv_file = this.createFile();
             this.createFile();
