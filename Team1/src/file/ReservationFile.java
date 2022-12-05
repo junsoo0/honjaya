@@ -21,19 +21,13 @@ public class ReservationFile {
 
     public ReservationFile() {
     }
-    public ReservationFile(CleaningReservation cr) {
-        rsrvInfo = cr;
-        this.user = cr.getUser();
-    }
 
-    public void createFolder() {
-        path = System.getProperty("user.dir") + File.separator + user.getname();
+    public void createFolder(String usrname) {
+        path = System.getProperty("user.dir") + File.separator + usrname;
         folder = new File(path);
         folder.mkdir();
     }
     public File createFile() {
-        createFolder();
-
         File file = new File(path + File.separator + rsrvInfo.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ".txt");
         try {
             if (file.createNewFile()) {

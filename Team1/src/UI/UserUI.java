@@ -48,9 +48,6 @@ public class UserUI {
 
     public void userMainUI() {
         CleaningReservation cr = new CleaningReservation(user);
-
-        ReservationFile uf = new ReservationFile(cr);
-        uf.createFolder();
         Scanner in = new Scanner(System.in);
 
         while(true) {
