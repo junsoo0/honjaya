@@ -154,7 +154,7 @@ public class CleaningReservation {
             String answer = in.next();
             if(answer.equals("Y")) {
                 Mealkit tempMealkit = new Mealkit(this);
-                tempMealkit.requestMealkit(processStatus);
+                tempMealkit.requestMealkit();
                 this.mealkit.add(tempMealkit);
             }
             else if(answer.equals("N")) {

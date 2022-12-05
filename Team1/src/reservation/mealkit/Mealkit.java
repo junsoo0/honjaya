@@ -50,7 +50,7 @@ public class Mealkit {
     }
 
     //밀키트 예약요청 함수
-    public void requestMealkit(String processStatus) {
+    public void requestMealkit() {
         HashMap<String, String> menu = new HashMap<>();
         Scanner sc = new Scanner(System.in);
 
@@ -66,7 +66,8 @@ public class Mealkit {
         menu.put("야채볶음밥", "10000");
 
         System.out.println("=============MealKit Request=============");
-        if (processStatus.equals("1회"))
+        System.out.println(cleaningReservation.getReserveType());
+        if (cleaningReservation.getReserveType().equals("1회"))
             setMealkitWeeks(1);
         else
             while (true) {
