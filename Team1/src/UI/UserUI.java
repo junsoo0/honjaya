@@ -71,7 +71,7 @@ public class UserUI {
                 if (in.hasNextInt())
                     break;
                 in.next();
-                System.out.println("숫자를 입력해주세요.: ");
+                System.out.println("숫자를 입력해주세요.");
             }
             int input = in.nextInt();
 
