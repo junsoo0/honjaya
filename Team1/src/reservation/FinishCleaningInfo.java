@@ -7,7 +7,7 @@ public class FinishCleaningInfo {
     private LocalDateTime finishCleanTime;
     private String finishPhoto;
 
-    private CleaningReservation cleaningReservation;
+    private final CleaningReservation cleaningReservation;
 
     public FinishCleaningInfo(CleaningReservation cleaningReservation) {
         this.cleaningReservation = cleaningReservation;
