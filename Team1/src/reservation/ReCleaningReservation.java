@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class ReCleaningReservation {
     private LocalDateTime signUpTime;
-    private String evidencePhoto = "";
+    private String evidencePhoto;
     private String reRequestReason;
     private Boolean isReRequestApproved;
     private LocalDateTime reRequestCleanDate;
@@ -121,17 +121,21 @@ public class ReCleaningReservation {
         while (true) {
             System.out.print("증거 사진을 첨부해주세요.(파일 경로 입력) : ");
             File src = new File(sc.nextLine());
+            // evidencePhoto = "이미지가 저장될 서버에서의 이미지 경로"
+            // File upload = new File(evidencePhoto);
 
             try {
                 FileInputStream fi = new FileInputStream(src);
+               // FileOutputStream fo = new FileOutputStream(src);
                 byte[] buf = new byte[1024 * 10];
                 while (true) {
                     int n = fi.read(buf);
-                    evidencePhoto += buf.toString();
+                    // fo.write(buf, 0, n);
                     if (n < buf.length)
                         break;
                 }
                 fi.close();
+                // fo.close();
                 break;
                 } catch (IOException e) {
                     System.out.println("파일 복사 오류");
