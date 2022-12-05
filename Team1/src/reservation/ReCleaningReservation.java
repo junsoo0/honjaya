@@ -77,6 +77,7 @@ public class ReCleaningReservation {
 
             if (tempDate <= 0 || tempDate > allList.size()) {
                 System.out.println("목록에 없는 번호를 입력하셨습니다.");
+                System.out.println();
             } else {
                 cr = allList.get(tempDate - 1);
                 cr.setReCleaningReservation(this);
