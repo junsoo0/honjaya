@@ -1,5 +1,7 @@
 package review;
 
+import reservation.CleaningReservation;
+
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
@@ -8,6 +10,8 @@ public class Review {
     String reviewPhoto;
     String reviewContent;
     LocalDateTime writeTime;
+
+    CleaningReservation cleaningReservation;
 
     public int getStarPoint() {
         return starPoint;
