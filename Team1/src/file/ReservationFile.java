@@ -24,11 +24,18 @@ public class ReservationFile {
 
     public ReservationFile() {
     }
+    public ReservationFile(CleaningReservation cr) {
+        rsrvInfo = cr;
+        this.user = cr.getUser();
+    }
 
-    public File createFile() {
+    public void createFolder() {
         path = System.getProperty("user.dir") + File.separator + user.getname();
         folder = new File(path);
         folder.mkdir();
+    }
+    public File createFile() {
+        createFolder();
 
         File file = new File(path + File.separator + rsrvInfo.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ".txt");
         try {
@@ -52,7 +59,7 @@ public class ReservationFile {
             this.user = cr.getUser();
 
             // File recv_file = this.createFile();
-            this.createFile();
+            // this.createFile();
             File file = new File(path + File.separator + rsrvInfo.getReservationDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ".txt");
             String path = this.getPath();
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
