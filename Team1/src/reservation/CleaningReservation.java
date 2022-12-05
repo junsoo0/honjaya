@@ -55,7 +55,14 @@ public class CleaningReservation {
 
         // 청소 면적 선택(예외 구현 완료)
         while(true) {
-            System.out.print("청소 면적을 선택해 주세요.(숫자로 1~40평 사이값을 입력해 주세요.) : ");
+            while (true) {
+                System.out.print("청소 면적을 선택해 주세요.(숫자로 1~40평 사이값을 입력해 주세요.) : ");
+                if (in.hasNextInt())
+                    break;
+                in.next();
+                System.out.println("숫자를 입력해주세요.");
+                System.out.println();
+            }
             this.cleaningSpace = in.nextInt();
             if(cleaningSpace > 40){
                 System.out.println(cleaningSpace + "평으로 잘못 입력 했습니다. 다시 입력해 주세요.");

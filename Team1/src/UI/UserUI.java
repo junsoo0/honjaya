@@ -66,8 +66,10 @@ public class UserUI {
             System.out.println("3. 청소 재요청");
             System.out.println("4. 종료");
 
-            System.out.print("\n메뉴를 선택해주세요.(숫자) : ");
-            while (!in.hasNextInt()) {
+            while (true) {
+                System.out.print("\n메뉴를 선택해주세요.(숫자) : ");
+                if (in.hasNextInt())
+                    break;
                 in.next();
                 System.out.println("숫자를 입력해주세요.");
             }
