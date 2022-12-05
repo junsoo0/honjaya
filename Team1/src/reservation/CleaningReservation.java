@@ -63,6 +63,7 @@ public class CleaningReservation {
                 System.out.println("숫자를 입력해주세요.");
                 System.out.println();
             }
+
             this.cleaningSpace = in.nextInt();
             if(cleaningSpace > 40){
                 System.out.println(cleaningSpace + "평으로 잘못 입력 했습니다. 다시 입력해 주세요.");
