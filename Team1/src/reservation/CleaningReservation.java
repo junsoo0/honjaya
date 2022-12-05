@@ -84,16 +84,31 @@ public class CleaningReservation {
                 continue;
             }
 
+            String path = System.getProperty("user.dir") + File.separator + user.getname();
+            File file = new File(path);
+            String[] filenames = file.list();
+
             if (reservationDate.isBefore(LocalDateTime.now())) {
                 System.out.println("현재 시간 보다 과거 예약일 입니다. 다시 입력해 주세요.");
                 System.out.println();
-            } else if(reservationDate.isEqual(LocalDateTime.now())) {
-                System.out.println("이미 예약된 시간입니다. 다시 입력해 주세요.");
-                System.out.println();
-            } else {
-                break;
+                continue;
             }
+
+            boolean check = false;
+            for (String filename: filenames) {
+                if (tempDate.substring(0, 10).equals(filename.substring(0, 10))) {
+                    System.out.println("이미 예약된 시간입니다. 다시 입력해 주세요.");
+                    System.out.println();
+                    break;
+                }
+                else
+                    check = true;
+            }
+
+            if(check)
+                break;
         }
+
 
         // 예약 장소 선택(예외 구현 완료)
 
@@ -171,6 +186,10 @@ public class CleaningReservation {
 
         //예약 시간
         this.signUpTime = LocalDateTime.now();
+
+        System.out.println("--------------------------------------------------");
+        System.out.println("              모든 예약이 접수되었습니다.");
+        System.out.println("--------------------------------------------------");
     }
 
     public int sumPrice() {
@@ -199,9 +218,6 @@ public class CleaningReservation {
     public Boolean requestPayment() {
         String answer;
         Scanner sc = new Scanner(System.in);
-        System.out.println("--------------------------------------------------");
-        System.out.println("              모든 예약이 접수되었습니다.");
-        System.out.println("--------------------------------------------------");
 
         while(true) {
             System.out.print("결제를 하시겠습니까?(Y/N) : ");
