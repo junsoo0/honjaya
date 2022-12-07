@@ -20,7 +20,7 @@ IntelliJ 2022.2
 
 ## Steb-by-step Start
 1. 로컬환경에 파일을 가져옵니다.
-    - (방법1) 직접 다운로드: [Download ZIP](https://github.com/OSP-team2/final-project/archive/refs/heads/main.zip)
+    - (방법1) 직접 다운로드: [Download ZIP](https://github.com/junsoo0/SD_team_project/archive/refs/heads/main.zip)
     - (방법2) git clone 이용
       - HTTPS
         ```bash
