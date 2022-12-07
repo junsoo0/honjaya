@@ -9,20 +9,19 @@ Java JDK 17
 IntelliJ 2022.2
 
 ## Quick Start
-- (Windows)
-[Honjaya.exe](https://github.com/junsoo0/SD_team_project/raw/main/Honjaya.exe)
-- (Windows or MacOS)
-[Honjaya.jar](https://github.com/junsoo0/SD_team_project/raw/main/Honjaya.jar)
-  -
+- (방법1) exe파일 실행(Windows)
+  1. [Honjaya.exe](https://github.com/junsoo0/SD_team_project/raw/main/Honjaya.exe)파일을 다운로드 합니다. 
+- (방법2) jar파일 실행(Windows or MacOS)
+  1. [Honjaya.jar](https://github.com/junsoo0/SD_team_project/raw/main/Honjaya.jar)파일을 다운로드 합니다. 
+  2. 콘솔에서 다운로드 받은 폴더로 이동 후 아래 코드 입력합니다.
    ```bash
    java -jar Honjaya.jar
    ```
 
 ## Steb-by-step Start
 1. 로컬환경에 파일을 가져옵니다.
-  - 직접 다운로드하는 방법
-  [Download ZIP](https://github.com/OSP-team2/final-project/archive/refs/heads/main.zip)
-  - git clone을 이용하는 방법
+  - (방법1) 직접 다운로드: [Download ZIP](https://github.com/OSP-team2/final-project/archive/refs/heads/main.zip)
+  - (방법2) git clone을 이용
     - HTTPS
       ```bash
       git clone https://github.com/junsoo0/SD_team_project.git
