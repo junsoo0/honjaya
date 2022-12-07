@@ -9,8 +9,10 @@ Java JDK 17
 IntelliJ 2022.2
 
 ## Quick Start
-- (Windows) [Honjaya.exe](https://github.com/junsoo0/SD_team_project/raw/main/Honjaya.exe)
-- (Windows or MacOS) [Honjaya.jar](https://github.com/junsoo0/SD_team_project/raw/main/Honjaya.jar)
+- (Windows)
+[Honjaya.exe](https://github.com/junsoo0/SD_team_project/raw/main/Honjaya.exe)
+- (Windows or MacOS)
+[Honjaya.jar](https://github.com/junsoo0/SD_team_project/raw/main/Honjaya.jar)
   -
    ```bash
    java -jar Honjaya.jar
