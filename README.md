@@ -20,14 +20,14 @@ IntelliJ 2022.2
 
 ## Steb-by-step Start
 1. 로컬환경에 파일을 가져옵니다.
-  - (방법1) 직접 다운로드: [Download ZIP](https://github.com/OSP-team2/final-project/archive/refs/heads/main.zip)
-  - (방법2) git clone을 이용
-    - HTTPS
-      ```bash
-      git clone https://github.com/junsoo0/SD_team_project.git
-      ```
-    - SSH
-      ```bash
-      git clone git@github.com:junsoo0/SD_team_project.git
-      ```
+    - (방법1) 직접 다운로드: [Download ZIP](https://github.com/OSP-team2/final-project/archive/refs/heads/main.zip)
+    - (방법2) git clone을 이용
+      - HTTPS
+        ```bash
+        git clone https://github.com/junsoo0/SD_team_project.git
+        ```
+      - SSH
+        ```bash
+        git clone git@github.com:junsoo0/SD_team_project.git
+        ```
 2. Java 전용 IDE(IntelliJ, Eclipse 등)를 이용하여 실행합니다.
